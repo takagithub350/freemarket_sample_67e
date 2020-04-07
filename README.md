@@ -51,8 +51,8 @@ Things you may want to cover:
 ## user_messagesテーブル
 |column|type|options|
 |------|----|-------|
-|user_id|string|null: false|
-|message_id|string|null: false|
+|user_id|string|null: false,foreign_key:true|
+|message_id|string|null: false,foreign_key:true|
 
 ### Association
 - belongs_to :users
@@ -80,16 +80,6 @@ Things you may want to cover:
 ### Association
 - belongs_to :users
 - belongs_to :prefectures
-
-
-## prefecturesテーブル
-|column|type|options|
-|------|----|-------|
-|prefecture|varchar|null: false|
-|address_id|integer|null: false,foreign_key:true|
-
-### Association
-- has_many: address
 
 
 ## creditcardsテーブル
@@ -145,6 +135,18 @@ Things you may want to cover:
 - has_mamy :comments
 - has_many :images
 - has_many :categories,through: :products_categories
+
+
+## products_categoriesテーブル
+|column|type|options|
+|------|----|-------|
+|product_id|string|null: false,foreign_key:true|
+|category_id|string|null: false,foreign_key:true|
+
+### Association
+- belongs_to :products
+- belongs_to :categories
+
 
 
 ## categoriesテーブル
