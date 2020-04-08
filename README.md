@@ -31,7 +31,7 @@ Things you may want to cover:
 
 |column|type|options|
 |------|----|-------|
-|name|varchar|null: false|
+|nickname|varchar|null: false|
 |e-mail|varchar|null: false|
 |password|varchar|null: false|
 |first_name|varchar|null: false|
