@@ -23,6 +23,7 @@ Things you may want to cover:
 
 * ...
 
+
 # freemarket_sample_67e DB設計
 
 
@@ -30,7 +31,7 @@ Things you may want to cover:
 
 |column|type|options|
 |------|----|-------|
-|name|varchar|null: false|
+|nickname|varchar|null: false|
 |e-mail|varchar|null: false|
 |password|varchar|null: false|
 |first_name|varchar|null: false|
