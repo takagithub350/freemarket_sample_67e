@@ -44,29 +44,8 @@ Things you may want to cover:
 ### Association
 - has_many :address
 - has_many :creditcards
-- has_many :messages, through: :users_messages
 - has_mamy :comments
 - has_many :products
-
-
-## user_messagesテーブル
-|column|type|options|
-|------|----|-------|
-|user_id|string|null: false,foreign_key:true|
-|message_id|string|null: false,foreign_key:true|
-
-### Association
-- belongs_to :user
-- belongs_to :message
-
-
-## messagesテーブル
-|column|type|options|
-|------|----|-------|
-|messages_text|text|null: false|
-
-### Asociation
-- has_many: users,through: :users_messages
 
 
 ## addressテーブル
@@ -92,7 +71,7 @@ Things you may want to cover:
 |security_code|varchar|null: false|
 |user_id|integer|null: false,foreign_key: true|
 
-### Asociation
+### Association
 - belongs_to :user
 
 
@@ -121,23 +100,11 @@ Things you may want to cover:
 |arrival_date|int|null: false|
 |brand|varchar||
 
-### Asociation
+### Association
 - belongs_to :user
 - has_mamy :comments
 - has_many :images
-- has_many :categories,through: :products_categories
-
-
-## products_categoriesテーブル
-|column|type|options|
-|------|----|-------|
-|product_id|string|null: false,foreign_key:true|
-|category_id|string|null: false,foreign_key:true|
-
-### Association
-- belongs_to :product
 - belongs_to :category
-
 
 
 ## categoriesテーブル
@@ -152,8 +119,7 @@ Things you may want to cover:
 |other|varchar||
 
 ### Association
-- has_mamy: products,though: :products_categories
-
+- has_mamy: products
 
 ## imagesテーブル
 |column|type|options|
