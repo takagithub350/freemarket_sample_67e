@@ -56,8 +56,8 @@ Things you may want to cover:
 |message_id|string|null: false,foreign_key:true|
 
 ### Association
-- belongs_to :users
-- belongs_to :messages
+- belongs_to :user
+- belongs_to :message
 
 
 ## messagesテーブル
@@ -76,11 +76,11 @@ Things you may want to cover:
 |city|varchar|null: false|
 |city_block|varchar|null :false|
 |building|varchar|null :false|
+|prefecture|varchar|null :false|
 |user_id|integer|null :false,foreign_key:true|
 
 ### Association
-- belongs_to :users
-- belongs_to :prefectures
+- belongs_to :user
 
 
 ## creditcardsテーブル
@@ -93,7 +93,7 @@ Things you may want to cover:
 |user_id|integer|null: false,foreign_key: true|
 
 ### Asociation
-- belongs_to :users
+- belongs_to :user
 
 
 ## commentsテーブル
@@ -104,18 +104,8 @@ Things you may want to cover:
 |product_id|integer|null :false, foreign_key: true|
 
 ### Association
-- belongs_to :users
-- belongs_to :products
-
-## prefecturesテーブル
-|column|type|options|
-|------|----|-------|
-|prefecture|varchar|null: false|
-|address_id|integer|null: false,foreign_key:true|
-
-### Association
-- has_many: address
-
+- belongs_to :user
+- belongs_to :product
 
 ## productsテーブル
 |column|type|options|
@@ -132,7 +122,7 @@ Things you may want to cover:
 |brand|varchar||
 
 ### Asociation
-- belongs_to :users
+- belongs_to :user
 - has_mamy :comments
 - has_many :images
 - has_many :categories,through: :products_categories
@@ -145,8 +135,8 @@ Things you may want to cover:
 |category_id|string|null: false,foreign_key:true|
 
 ### Association
-- belongs_to :products
-- belongs_to :categories
+- belongs_to :product
+- belongs_to :category
 
 
 
@@ -173,4 +163,4 @@ Things you may want to cover:
 
 
 ### Association
-belongs_to: products
+belongs_to: product
