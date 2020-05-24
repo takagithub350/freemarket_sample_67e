@@ -9,10 +9,14 @@
         = image_tag 'pict/flower_hyacinth.png', height: '90px', width: '90px'
       .right__container
         .product__title ヒヤシンス
-        .product__price__mini ￥30,000 (税込) 送料込み
+        .product__price__mini
+          = Product.all.last[:price]
+          円
     %li.product__check__container__01
       .product__price__normal 支払い金額
-      .product__price__normal ￥30,000
+      .product__price__normal 
+        = Product.all.last[:price]
+        円
     %li.product__check__container__02
       .product__check__content 支払い方法
       = link_to "+登録してください" ,"#", class: 'product__register__content '
