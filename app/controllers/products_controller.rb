@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   # 親カテゴリーが選択された後に動くアクション
-  def get_category_children
+  def get_category_childrenadsfadf
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children    #親カテゴリーに紐付く子カテゴリーを取得
   end
 
