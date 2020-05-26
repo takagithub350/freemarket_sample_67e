@@ -2,14 +2,15 @@
 $(function(){
   //画像
   $('#image-input').on('focus',function(){
-    $('#error-image').text('');
+    $('#img_error').text('');
     $('#image-input').on('blur',function(){
-      $('#error-image').text('');
+      $('#img_error').text('');
       let imageLength = $('#output-box').children('li').length;
       if(imageLength ==''){
-        $('#error-image').text('画像がありません');
+        $('#img_error').text('画像がありません');
+        $('.sell-form__image__dropbox__label').css('border-color','red');
       }else{
-        $('#error-image').text('');
+        $('#img_error').text('');
       }
     });
   });
@@ -19,47 +20,47 @@ $(function(){
     let imageLength = $('#output-box').children('li').length;
     if(imageLength ==''){
       $('body, html').animate({ scrollTop: 0 }, 500);
-      $('#error-image').text('画像がありません');
+      $('#img_error').text('画像がありません');
     }else if(imageLength >10){
       $('body, html').animate({ scrollTop: 0 }, 500);
-      $('#error-image').text('画像を10枚以下にして下さい');
+      $('#img_error').text('画像を5枚以下にして下さい');
     }else{
       return true;
     }
   });
 
   //商品名
-  $('#name-select').on('blur',function(){
+  $('#product_name').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-name').text('入力してください');
+      $('#product_name_error').text('入力してください');
       $(this).css('border-color','red');
     }else{
-      $('#error-name').text('');
+      $('#product_name_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
 
   //商品説明
-  $('.sell-form__description').on('blur',function(){
+  $('#product_detail').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-text').text('入力してください');
+      $('#text_error').text('入力してください');
       $(this).css('border-color','red');
     }else{
-      $('#error-text').text('');
+      $('#text_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
 
   //状態
-  $('#condition-select').on('blur',function(){
+  $('#state-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-condition').text('選択して下さい');
+      $('#state_error').text('選択して下さい');
       $(this).css('border-color','red');
     }else{
-      $('#error-condition').text('');
+      $('#state_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
@@ -68,10 +69,10 @@ $(function(){
   $('#postage-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-deliverycost').text('選択して下さい');
+      $('#postage_error').text('選択して下さい');
       $(this).css('border-color','red');
     }else{
-      $('#error-deliverycost').text('');
+      $('#postage_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
@@ -80,10 +81,10 @@ $(function(){
   $('#delivery-company').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-delivery').text('選択して下さい');
+      $('#delivery_method_error').text('選択して下さい');
       $(this).css('border-color','red');
     }else{
-      $('#error-delivery').text('');
+      $('#delivery_method_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
@@ -92,10 +93,10 @@ $(function(){
   $('#address-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-address').text('選択して下さい');
+      $('#delivery_origin_error').text('選択して下さい');
       $(this).css('border-color','red');
     }else{
-      $('#error-address').text('');
+      $('#delivery_origin_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
@@ -104,10 +105,10 @@ $(function(){
   $('#delivery_days-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-delivery_days').text('選択して下さい');
+      $('#arrival_date_error').text('選択して下さい');
       $(this).css('border-color','red');
     }else{
-      $('#error-delivery_days').text('');
+      $('#arrival_date_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
@@ -116,10 +117,10 @@ $(function(){
   $('.sell-form__box__input__label__number').on('blur',function(){
     let value = $(this).val();
     if(value < 300 || value > 999999){
-      $('#error-price').text('300以上999999以下で入力してください');
+      $('#price_error').text('300以上999999以下で入力してください');
       $(this).css('border-color','red');
     }else{
-      $('#error-price').text('');
+      $('#price_error').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });

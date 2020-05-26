@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:edit, :update]
+
   def new
     @product = Product.new
     @product.images.build 
@@ -26,9 +28,34 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      # render :new, images: @product.images.build
-      redirect_to new_product_path
+      render :edit
+    end
+  end
 
+  def edit
+    @grandchild = Category.find(@product.category_id)
+    @child = @grandchild.parent
+    @parent = @grandchild.parent.parent
+
+    @category_grandchild_array = ["---"]
+    Category.where(ancestry: @grandchild.ancestry).each do |grandchild|
+      @category_grandchild_array << grandchild.name
+    end
+
+    @category_parent_array = ["---"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+    @category = Category.find(@product.category_id)
+    @child_categories = Category.where('ancestry = ?', "#{@category.parent.ancestry}")
+    @grand_child = Category.where('ancestry = ?', "#{@category.ancestry}")
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to root_path
+    else
+      redirect_to edit_product_path
     end
   end
 
@@ -46,6 +73,10 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:product_name, :price, :category_id, :size, :status, :postage, :explanation, :transaction_status, :delivery_method, :delivery_origin, :arrival_date, :brand, images_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:product).permit(:product_name, :price, :category_id, :size, :status, :postage, :explanation, :transaction_status, :delivery_method, :delivery_origin, :arrival_date, :brand, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

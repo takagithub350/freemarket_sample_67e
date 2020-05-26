@@ -33,8 +33,8 @@ $(function(){
           $("#image-input>label").eq(-1).css('display','none');
           // 入力されたlabelを見えなくする
 
-          if (imageLength < 9) {
-            // 表示されているプレビューが９以下なら、新たにinputを生成する
+          if (imageLength < 4) {
+            // 表示されているプレビューが4以下なら、新たにinputを生成する
             $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-form__image__dropbox__label" data-label-id="${labelLength+1}">
                                         <input id="item_images${labelLength+1}" style="display: none;" type="file" name="product[images_attributes][${labelLength+1}][image]">
                                         <div class="fas fa-camera fa-lg"></i>
@@ -135,4 +135,24 @@ $(function(){
       })
     })
   }
+  // file_fieldのnameに動的なindexをつける為の配列
+  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  // 既に使われているindexを除外
+  lastIndex = $('.js-file_group:last').data('index');
+  fileIndex.splice(0, lastIndex);
+
+  $('.hidden-destroy').hide();
+  $('#output-box').on('click', '.preview-image__button__delete', function() {
+    const targetIndex = $(this).parent().data('index');
+    // 該当indexを振られているチェックボックスを取得する
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    // もしチェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+
+    $(this).parent().remove();
+    $(`img[data-index="${targetIndex}"]`).remove();
+
+    // 画像入力欄が0個にならないようにしておく
+    if ($('.sell-container__content__upload__items__box__label').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+  });
 });

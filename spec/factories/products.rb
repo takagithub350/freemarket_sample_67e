@@ -11,7 +11,7 @@ FactoryBot.define do
     price             {"9999"}
     user_id           {"1"}
     category_id       {"2"}
-    # buyer_id          {""}
+    buyer_id          {""}
 
     after(:build) do |product|
       product.images << build(:image, product: product)

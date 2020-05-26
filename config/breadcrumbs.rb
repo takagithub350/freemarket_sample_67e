@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :categorys do
-  link "categorys", categorys_path
+  link "カテゴリー", categorys_path
 end
 
 # crumb :project do |project|

@@ -11,18 +11,23 @@
             必須
         %p.sell-form__image__max10-upload
           最大5枚までアップロードできます
-        .sell-form__image__dropbox
-          = f.fields_for :images do |i|
-            %ul#output-box
-              %div#image-input{tabindex:"0"}
-                %label{for: "item_images0",class: 'sell-form__image__dropbox__label',data: {label_id: 0 }}
-                  = i.file_field :image, type: 'file', value:"", style: "display:none", id: "item_images0"
-                  .sell-form__image__dropbox__label__content
-                    %i.fas.fa-camera.fa-lg
-                    %br
-                    ドラッグアンドドロップ
-                    %br
-                    またはクリックしてファイルをアップロード
+        #image-box2
+          #previews2
+            - if @product.persisted?
+              - @product.images.each_with_index do |image, i|
+                %li.adsaf
+                  = image_tag image.image.url, data: { index: i }, class: "edit_img_#{i}",id: :pre_img
+                  .js-remove{data: { index: i }, name: "[edit_remove][#{i}]"} 削除
+          = f.fields_for :images do |image|
+            %label.js-file_group{"data-index": "#{image.index}", id: "dropArea2"}
+              %pre.visible-pc
+                %i.icon-camera.fas.fa-camera
+              = image.file_field :image, class: 'js-file2',style: "display:none"
+              = image.hidden_field :_destroy, data:{ index: image.index }, value: 0, class: "delete_img_#{image.index}"
+          - if @product.persisted?
+            .js-file_group{"data-index": "#{@product.images.count}", style: "display:none"}
+              = file_field_tag :imgae, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file2', id: "img-file", style: "display:none"
+          
         .error-messages#img_error
 
       .sell-form__content
@@ -51,8 +56,21 @@
             %span.form-require 必須
             .listing-select-wrapper
               .listing-select-wrapper__box
-                = select_tag(:category_id, options_for_select(@category_parent_array),class: 'listing-select-wrapper__box--select', id: 'parent_category',prompt: "選択して下さい")
-                
+                //親カテゴリーのセレクトボックスの生成
+                = select_tag(:category_id, options_for_select(@category_parent_array, selected: @parent.name),class: 'listing-select-wrapper__box--select', id: 'parent_category')
+            .listing-select-wrapper#children_wrapper   
+              .listing-select-wrapper__box
+                //親カテゴリーのセレクトボックスの生成
+                %select{class: 'listing-select-wrapper__box--select', id: 'child_category'}
+                  %option{value: "---","data-category": "---"} ---
+                  %option{value: "#{@child.id}","data-category": "#{@child.id}", selected: true} #{@child.name}
+                  - @child.siblings.each do |child|
+                    %option{value: "#{child.id}","data-category": "#{child.id}"} #{child.name}
+            .listing-select-wrapper#grandchildren_wrapper     
+              .listing-select-wrapper__box
+                #grandchildren_wrapper.listing-select-wrapper__added
+                  .listing-select-wrapper__box
+                    = f.collection_select(:category_id, @grand_child, :id, :name, {prompt: "---"}, {class: 'listing-select-wrapper__box--select', id: "grandchild_category"})
           .error-messages#category_error
 
           .sell-form__item
@@ -67,7 +85,7 @@
               商品の状態
               %span.form-require 必須
             .icon-wrap
-              = select_tag 'product[status]', options_for_select(["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"]),{prompt: "選択して下さい",class:'sell-form__selection',id: 'state-select'}
+              = select_tag 'product[status]', options_for_select(["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"],{:selected => @product.status.to_s}),{prompt: "選択して下さい",class:'sell-form__selection',id: 'state-select'}
               = icon('fas', 'angle-down')
           .error-messages#state_error
 
@@ -80,7 +98,7 @@
               配送料の負担
               %span.form-require 必須
             .icon-wrap
-              = select_tag 'product[postage]', options_for_select(["送料込み（出品者負担）", "着払い（購入者負担）"]),{prompt: "選択して下さい",class:'sell-form__selection',id: 'postage-select'}
+              = select_tag 'product[postage]', options_for_select(["送料込み（出品者負担）", "着払い（購入者負担）"],{:selected => @product.postage.to_s}),{prompt: "選択して下さい",class:'sell-form__selection',id: 'postage-select'}
               = icon('fas', 'angle-down')
           .error-messages#postage_error
 
@@ -89,7 +107,7 @@
               配達の方法
               %span.form-require 必須
             .icon-wrap
-              = select_tag 'product[delivery_method]', options_for_select(["未定", "レターパック", "日本郵便", "ヤマト運輸", "佐川急便", "その他"]),{prompt: "選択して下さい",class:'sell-form__selection',id: 'delivery-company'}
+              = select_tag 'product[delivery_method]', options_for_select(["未定", "レターパック", "日本郵便", "ヤマト運輸", "佐川急便", "その他"],{:selected => @product.delivery_method.to_s}),{prompt: "選択して下さい",class:'sell-form__selection',id: 'delivery-company'}
               = icon('fas', 'angle-down')
           .error-messages#delivery_method_error
 
@@ -107,7 +125,7 @@
               発送までの日数
               %span.form-require 必須
             .icon-wrap
-              = select_tag 'product[arrival_date]', options_for_select(["１〜２日で発送", "２〜３日で発送", "４〜７日で発送"]),{prompt: "選択して下さい", class:'sell-form__selection',id: 'delivery_days-select'}
+              = select_tag 'product[arrival_date]', options_for_select(["１〜２日で発送", "２〜３日で発送", "４〜７日で発送"],{:selected => @product.arrival_date.to_s}),{prompt: "選択して下さい", class:'sell-form__selection',id: 'delivery_days-select',selected: "arrival_date"}
               = icon('fas', 'angle-down')
           .error-messages#arrival_date_error
 
@@ -125,7 +143,7 @@
                   %span.price-mark
                     = f.label :price, class: 'sell-form__box__input__label' do
                       ¥
-                      = f.number_field :price, {placeholder: '0', value: '', autocomplete:"off", class: 'sell-form__box__input__label__number', required: "required",id: "product_price"}
+                      = f.number_field :price, {placeholder: '0', autocomplete:"off", class: 'sell-form__box__input__label__number', required: "required",id: "product_price"}
             .error-messages
               .error-messages__price#price_error
 
@@ -142,9 +160,8 @@
 
         .sell-form__btn
           .btn-red
-            = f.submit '出品する', class: 'red-btn',id: :submit
-          .btn-gray
-            = link_to '下書きに保存', class: "btn-gray"
+            = f.submit '編集する', class: 'red-btn',id: :submit
+          
           .btn-blue
             = link_to 'もどる', root_path, class: "btn-blue"
 
