@@ -61,14 +61,21 @@ class ProductsController < ApplicationController
 
   def show
     @product= Product.find(params[:id])
-    @user= User.find(params[:id])
-    @addresses= Address.find(params[:id])
-    @images = Image.find(params[:id])
+    @user= User.find_by(id: @product.user_id)
     @category = Category.find(@product.category_id)
   end
 
   def index
     @products = Product.includes(:images).all.order(updated_at: :desc)
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      redirect_to root_path
+    else
+      redirect_to product_path
+    end
   end
 
   private

@@ -1,5 +1,5 @@
 body{
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
 
 }
 
@@ -10,6 +10,7 @@ body{
   width: 700px;
   margin: auto;
   font-weight: 300;
+  text-align: center;
   
   
   .new_title{
@@ -80,21 +81,58 @@ body{
       margin-top: 32px;
       
       .red_btn{
-        line-height: 48px;
         background-color: #ea352d;
-        color: #FFFFFF;
         width: 80%;
+        line-height: 48px;
+        color: #FFFFFF;
         
       }
     }
     #error_explanation{
       background-color: #ccffff;
-      color: red;
+      color: #ea352d;
       margin: 10px 0;
-
+      
+    }
+    #facebook{
+      display: block;
+      background-color: #385185;
+      color: #ffffff;
+      height: 48px;
+      width: 80%;
+      line-height: 48px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+    }
+    
+    #google{
+      display: block;
+      border: solid 1px;
+      height: 48px;
+      width: 80%;
+      line-height: 48px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+      
+    }
+    
+    #login_mail{
+      display: block;
+      background-color: #ea352d;
+      color: #ffffff;
+      height: 48px;
+      width: 80%;
+      line-height: 48px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+      
     }
   }
 }
+
 .edit_btn{
   height: 30px;
   width: 500px;
