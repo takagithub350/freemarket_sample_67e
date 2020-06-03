@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root to: 'toppages#index'
-  resources :users, only: [:new, :index] do
+  resources :users, only: [:new, :index, :show] do
     collection do
       get 'logout'
     end
@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :products, only: [:show] do
+    resource :favorites, only: [:create, :destroy]
+  end
 
   get 'show/index', to: 'show#index'
 

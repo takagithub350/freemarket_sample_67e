@@ -94,33 +94,24 @@
             = @product.arrival_date
 
     .item-button
-      .item-button__left
-        %p ✴︎お気に入り
-    
-      
-      .item-button__right
-        = link_to "不適切な商品の通報", "#", class: "item-button__right__nogood"
+      .favorite
+        - if user_signed_in? && @product.user.id != current_user.id
+          .favorite__button
+            .favorite__button__left
+              .favorite__button__left__iine
+                %div{id: "favorite-#{@product.id}"}
+                  = render 'favorites/favorite', { product: @product}
 
-    .item-detail-message
-      .message-container
-        %textarea(type="text" cols="71" rows="7")
-        .message-content
-          %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        
-
-                
-   
-    .item-comment
+    .product-comment
       -if current_user.nil?
-        = link_to "ログイン", new_user_session_path
+        = link_to "ログイン", new_user_session_path, class: 'login-btn'
       -elsif current_user.id == @product.user_id
-        = link_to "編集する", edit_product_path
-        = link_to "削除する", product_path, method: :delete, data: {confirm: "出品情報を削除しますか？"}
-
+        = link_to "編集する", edit_product_path, class: 'edit-btn'
+        = link_to "削除する", product_path, method: :delete, class: 'delete-btn', data: {confirm: "出品情報を削除しますか？"}
       -else
         = link_to check_products_path do
-          .itm-comment_center
-          購入画面に進む
+          .buy-btn
+            購入画面に進む
 
         
     .item-comment

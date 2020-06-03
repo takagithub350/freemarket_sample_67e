@@ -1,0 +1,10 @@
+- if Favorite.find_by(user: current_user, product_id: product.id)
+  = link_to "/products/#{product.id}/favorites", method: :delete, remote: true do
+    .i{class: "fas fa-heart red_heart"}
+    %span.red_heart__iine いいね！
+- else
+  = link_to "/products/#{product.id}/favorites", method: :post, remote: true do
+    .i{class: "far fa-heart none_heart"}
+    %span.none_heart__iine いいね！
+
+= @product.favorites.count
