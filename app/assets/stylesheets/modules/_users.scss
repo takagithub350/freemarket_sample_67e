@@ -90,3 +90,37 @@ a{
     line-height: 100px;
     color: #FFFFFF;
 }
+
+.menu {
+    width: calc( 100vw - 300px);
+    background-color: #FFFFFF;
+    position: absolute;
+    flex: 1 1 auto;
+    margin-left: 300px;
+    border-top:solid #272727;
+    align-items: center;
+    padding:20px 100px;
+    .item {
+        padding: 12px 4%;
+        border-bottom: 1px solid #f5f5f5;
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+    .like {
+        display: flex;
+        .like__List {
+            margin-left: 10px;
+            &__name {
+                background-color: #f8f8f8;
+                text-align: center;
+                font-size: 20px;
+            }
+            &__price {
+                background-color: #f8f8f8;
+                text-align: center;
+                font-size: 15px;
+            }
+        }
+    }
+}

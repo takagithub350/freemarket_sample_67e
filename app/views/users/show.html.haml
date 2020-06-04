@@ -1,0 +1,21 @@
+.wrapper
+  = render "products/header"
+  %p.users_contents
+    = render "users/side_bar"
+    
+  %div.menu
+    .item
+      いいね!一覧
+    .like
+      - @user.favorited_products.each do |product|
+        .like__List
+        = link_to "/products/#{product.id}", method: :get do
+          .like__List__image
+            = image_tag product.images[0].image.url, height: '150px', width: '150px', class: '.like__image__box'
+          .like__List__name
+            %li
+            = product.product_name
+          .like__List__price
+            %li
+              = product.price
+              円

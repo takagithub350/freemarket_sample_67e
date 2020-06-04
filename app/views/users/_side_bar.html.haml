@@ -4,7 +4,7 @@
     %li.list-group__content
       = link_to 'お知らせ',"#", class: 'a'
     %li.list-group__content
-      = link_to 'いいねした商品',"#", class: 'a'
+      = link_to 'いいねした商品', user_path(current_user.id), class: 'a'
   %h1.side_bar__title 商品を出品する
   %ul.list-group
     %li.list-group__content
