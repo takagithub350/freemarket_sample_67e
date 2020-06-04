@@ -1,0 +1,73 @@
+= render "topheader"
+.practice
+  = search_form_for @q do |f|
+    -# = f.label :product_name_cont
+    = f.search_field :product_name_cont
+    = f.submit
+  = search_form_for @q do |f|
+    = = = f.search_field method, {}
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Age
+        -# %th{:colspan => “0”}
+    %tbody
+      - @product.each do |product|
+        %tr
+          %td= product.product_name
+= render "mainspace"
+
+.footer-sub
+  .footer-sub__box
+    %h2 だれでもかんたん、人生を変えるフリマアプリ
+    %p 今すぐ無料ダウンロード
+  .footer-sub__app-google
+    .footer-sub__app-google__app
+      = link_to "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8" do
+        = image_tag 'logo/app.png', height: '40px', width: '135px'
+    .footer-sub__app-google__google
+      = link_to "https://play.google.com/store/apps?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+        = image_tag 'logo/google-play-badge.png', alt: 'Google Play で手に入れよう', height: '', width: '160px'
+.topfooter
+  .footer__contents
+    .footer__contents__content
+      %h2 FURIMAについて
+      %ul
+        %li
+          = link_to root_path do
+            会社概要（運営会社）
+        %li
+          = link_to root_path do
+            プライバシーポリシー
+        %li
+          = link_to root_path do
+            FURIMA利用規約
+        %li
+          = link_to root_path do
+            ポイントに関する特約
+    .footer__contents__content
+      %h2 FURIMAを見る
+      %ul
+        %li
+          = link_to root_path do
+            カテゴリー一覧
+        %li
+          = link_to root_path do
+            ブランド一覧
+    .footer__contents__content
+      %h2 ヘルプ＆ガイド
+      %ul
+        %li
+          = link_to root_path do
+            FURIMAガイド
+        %li
+          = link_to root_path do
+            FURIMAロゴ利用ガイドライン
+        %li
+          = link_to root_path do
+            お知らせ
+  .footer__logo
+    %h1
+      = image_tag 'logo/logo-white.png', height: '44px', width: '154px'
+  %p © FURIMA
