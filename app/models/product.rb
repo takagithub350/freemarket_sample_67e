@@ -5,6 +5,11 @@ class Product < ApplicationRecord
   validates :explanation, presence: true, length: { maximum: 1000 }
   extend ActiveHash::Associations::ActiveRecordExtensions
 
+  def self.search(search)
+    return Product.all unless search
+    Product.where(['product_name LIKE ?', "%#{search}%"])
+  end
+
   belongs_to_active_hash :prefecture
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :searches, only: [:index]
   resources 'categorys', only: [:index]
 
   resources :creditcards, only: [:new]
@@ -35,6 +34,10 @@ Rails.application.routes.draw do
 
   resources :products, only: [:show] do
     resource :favorites, only: [:create, :destroy]
+  end
+   
+  resources :products, only: [:index] do
+    resources :searches, only: [:index] 
   end
 
   get 'show/index', to: 'show#index'

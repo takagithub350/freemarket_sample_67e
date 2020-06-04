@@ -1,0 +1,54 @@
+= link_to new_product_path, class: "fixed_btn" do
+  %h1 出品する
+  = image_tag "icon/icon_camera.png", height: '62%', width: '62%'
+.header
+  .header__box
+    .header__box__1
+      .header__box__1__title-box
+        .header__box__1__title-box__title
+          = link_to root_path do
+            = image_tag 'logo/logo.png', height: '40px', width: '140px'
+          
+      .header__box__1__search-box
+        = form_with(url: 'products/searches/index', local: true, method: :get, class: "header__box__1__search-box__box") do |f|
+          = f.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: 'header__box__1__search-box__box__submit'
+    .header__box__2
+      .header__box__2__content
+        %ul
+          %li
+            = link_to categorys_path do
+              カテゴリー
+            
+          %li
+            = link_to root_path do
+              ブランド
+      .header__box__2__login
+        %ul
+          %li
+            -if user_signed_in? 
+              = link_to users_path do
+                マイページ
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+            -else
+              = link_to "新規登録", new_user_path
+              = link_to "ログイン", new_user_session_path
+
+.search
+  .search-container
+    .search-left
+      = render 'searches/form-bar'
+    .search-right
+      %section.items-box-container
+        -if @search.present?
+          %h2.search-result-head
+            =@search
+            %span.search-result-head-text
+              の検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
+        -else
+          %h2.search-result-nil
+            新着商品
+        .items-box-content
+          = render @products

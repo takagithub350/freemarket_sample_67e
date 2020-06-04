@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :update]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def new
     @product = Product.new
@@ -65,13 +66,12 @@ class ProductsController < ApplicationController
     @category = Category.find(@product.category_id)
   end
 
-  def self.search(search)
-    return Product.all unless search
-    Product.where(['name LIKE ?', "%#{search}%"])
-  end
-
   def index
     @products = Product.includes(:images).all.order(updated_at: :desc)
+  end
+
+  def search
+    @products = Product.search(params[:keyword])
   end
 
   def destroy
