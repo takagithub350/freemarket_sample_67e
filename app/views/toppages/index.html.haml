@@ -12,8 +12,9 @@
           
       .header__box__1__search-box
         = search_form_for(@q, url: products_path, class: "header__box__1__search-box__box" ) do |f|
-          = f.search_field :product_name_cont, placeholder: "キーワードから探す", class: "header__box__1__search-box__box__text"
-          = f.submit'icon/icon-search 1.png', height: '19px', width: '19px', class: 'header__box_'
+          = f.text_field :product_name_cont, placeholder: "キーワードから探す",height: '19px', class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: "header__box__1__search-box__box__submit"
+          
     .header__box__2
       .header__box__2__content
         %ul

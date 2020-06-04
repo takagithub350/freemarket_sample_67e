@@ -1,4 +1,3 @@
--# %h1 Users
 .header
   .header__box
     .header__box__1
@@ -6,27 +5,32 @@
         .header__box__1__title-box__title
           = link_to root_path do
             = image_tag 'logo/logo.png', height: '40px', width: '140px'
-          
+
       .header__box__1__search-box
-        = search_form_for @q do |f|
-          = f.search_field :product_name_cont
-          = f.submit
+        = search_form_for(@q, url: products_path, class: "header__box__1__search-box__box" ) do |f|
+          = f.text_field :product_name_cont, placeholder: "キーワードから探す",height: '19px', class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: "header__box__1__search-box__box__submit"
 
-%table
-  %thead
-    %tr
-      %th 商品名
-      %th 値段
-    -#   %th{:colspan => “3”}
-  %tbody
-    - @product.each do |product|
+= render "products/side_bar"
+
+.main  
+  %table
+    %thead
       %tr
-        %td= product.product_name
-        %td= product.price
--#         %td= link_to ‘Show’, product
--#         %td= link_to ‘Edit’, edit_user_path(user)
--#         %td= link_to ‘Destroy’, user, method: :delete, data: { confirm: ‘Are you sure?’ }
--# %br/
--# = link_to ‘New User’, new_user_path
+        %th 商品画像
+        %th 商品名
+        %th 値段
+    %tbody
+      .product__content
+        - @product.each do |product|
+          %tr
+          %td
+            = image_tag product.images[0].image.url, height: '150px', width: '220px', class: 'product__image'
+          %td
+            = product.product_name
+          %td
+            = product.price
+            円（税込）
 
-= render "products/footer"
+
+= render "products/footer", position: 'bottom'
