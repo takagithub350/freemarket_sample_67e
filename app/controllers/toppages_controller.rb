@@ -7,5 +7,7 @@ class ToppagesController < ApplicationController
       format.html
       format.json
     end
+    @q = Product.ransack(params[:q])
+    @product = @q.result(distinct: true)
   end
 end

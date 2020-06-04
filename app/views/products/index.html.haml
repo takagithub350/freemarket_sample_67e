@@ -1,0 +1,32 @@
+-# %h1 Users
+.header
+  .header__box
+    .header__box__1
+      .header__box__1__title-box
+        .header__box__1__title-box__title
+          = link_to root_path do
+            = image_tag 'logo/logo.png', height: '40px', width: '140px'
+          
+      .header__box__1__search-box
+        = search_form_for @q do |f|
+          = f.search_field :product_name_cont
+          = f.submit
+
+%table
+  %thead
+    %tr
+      %th 商品名
+      %th 値段
+    -#   %th{:colspan => “3”}
+  %tbody
+    - @product.each do |product|
+      %tr
+        %td= product.product_name
+        %td= product.price
+-#         %td= link_to ‘Show’, product
+-#         %td= link_to ‘Edit’, edit_user_path(user)
+-#         %td= link_to ‘Destroy’, user, method: :delete, data: { confirm: ‘Are you sure?’ }
+-# %br/
+-# = link_to ‘New User’, new_user_path
+
+= render "products/footer"
