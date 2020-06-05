@@ -14,19 +14,33 @@
             = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: "header__box__1__search-box__box__submit"
             
   .practice
+    .top_word
+      詳細検索
+
     = search_form_for @q do |f|
-    
+      .item
+        キーワードを追加する
       = f.search_field :product_name_cont
+      %br/
+      %br/
 
-      = f.label :price_gt
-      = f.search_field :price_gt
+      .item
+        価格(円)
+        %br/
+        ※minより大きく、max未満での検索
+        .search_box
+          = f.search_field :price_gt, class: "input_searchbox", placeholder: "min"
+          .item
+          〜
+          = f.search_field :price_lt, class: "input_searchbox", placeholder: "max"
 
-      = f.label :price_lt
-      = f.search_field :price_lt
+      %br/
+      %br/
       .listing-product-detail__category
+        カテゴリー検索
         = f.collection_select(:category_id_eq, @parents, :id, :name, {include_blank: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'q_category_id_eq'})
 
-      = f.submit
+      = f.submit "検索する", class: "search_btn"
 
 
   %div.menu
