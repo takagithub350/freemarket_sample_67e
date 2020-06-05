@@ -64,6 +64,8 @@ class ProductsController < ApplicationController
     @product= Product.find(params[:id])
     @user= User.find_by(id: @product.user_id)
     @category = Category.find(@product.category_id)
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def index

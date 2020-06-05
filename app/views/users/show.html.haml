@@ -11,7 +11,7 @@
         .like__List
         = link_to "/products/#{product.id}", method: :get do
           .like__List__image
-            = image_tag product.images[0].image.url, height: '150px', width: '150px', class: '.like__image__box'
+            = image_tag product.images[0].image.url, height: '150px', width: '160px', class: '.like__image__box'
           .like__List__name
             %li
             = product.product_name

@@ -9,10 +9,12 @@
           = link_to root_path do
             = image_tag 'logo/logo.png', height: '40px', width: '140px'
           
+          
       .header__box__1__search-box
-        = search_form_for(@q, url: products_path) do |f|
-          = f.search_field :product_name_cont
-          = f.submit    
+        = search_form_for(@q, url: products_path, class: "header__box__1__search-box__box" ) do |f|
+          = f.text_field :product_name_cont, placeholder: "キーワードから探す",height: '19px', class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: "header__box__1__search-box__box__submit"
+          
     .header__box__2
       .header__box__2__content
         %ul
