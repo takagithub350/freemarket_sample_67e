@@ -1,7 +1,7 @@
 = render "topheader"
 .practice
   = search_form_for @q do |f|
-  
+
     = f.search_field :product_name_cont
 
     = f.label :price_gt
@@ -13,7 +13,7 @@
       = f.collection_select(:category_id_eq, @parents, :id, :name, {include_blank: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'q_category_id_eq'})
 
     = f.submit
-  
+
   %table
     %thead
       %tr
@@ -23,6 +23,7 @@
       - @products.each do |product|
         %tr
           %td= product.product_name
+
 = render "mainspace"
 
 .footer-sub
