@@ -9,6 +9,7 @@ $(document).ready(function () {
                         <div class=‘listing-select-wrapper__box’>
                           <select class=“listing-select-wrapper__box--select” id=“child_search_category” name=“q[category_id_eq]“>
                             <option value=“---” data-category=“---“>---</option>
+
                             ${insertHTML}
                           <select>
                         </div>
@@ -21,6 +22,7 @@ $(document).ready(function () {
                               <div class=‘listing-select-wrapper__box’>
                                 <select class=“listing-select-wrapper__box--select” id=“grandchild_category” name=“q[category_id_eq]“>
                                   <option value=“---” data-category=“---“>---</option>
+
                                   ${insertHTML}
                                 </select>
                               </div>
@@ -44,6 +46,7 @@ $(document).ready(function () {
           $(“#size_wrapper”).remove();
           $(“#brand_wrapper”).remove();
           var insertHTML = “”;
+
           children.forEach(function (child) {
             insertHTML += appendOption(child);
           });
@@ -80,6 +83,7 @@ $(document).ready(function () {
               $(“#size_wrapper”).remove();
               $(“#brand_wrapper”).remove();
               var insertHTML = “”;
+
               grandchildren.forEach(function (grandchild) {
                 insertHTML += appendOption(grandchild);
               });
@@ -93,6 +97,7 @@ $(document).ready(function () {
         $(“#grandchildren_wrapper”).remove(); 
         $(“#size_wrapper”).remove();
         $(“#brand_wrapper”).remove();
+
         1;
       }
     }

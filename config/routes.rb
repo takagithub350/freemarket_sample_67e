@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:show] do
     resource :favorites, only: [:create, :destroy]
+    resources :comments, only: :create
   end
 
   get 'show/index', to: 'show#index'
