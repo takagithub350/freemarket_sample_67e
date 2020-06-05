@@ -68,7 +68,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.includes(:images).all.order(updated_at: :desc)
+    @q = Product.ransack(params[:q])
+    @product = @q.result(distinct: true)
   end
 
   def destroy
