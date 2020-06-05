@@ -72,10 +72,6 @@ class ProductsController < ApplicationController
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
     @parents = Category.where(ancestry: nil)
-
-    
-
-  
     respond_to do |format|
       format.html
       format.json
