@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
 
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children    #親カテゴリーに紐付く子カテゴリーを取得
+    @category_children = Category.find("#{params[:parent_id]}").children    #親カテゴリーに紐付く子カテゴリーを取得
+    # binding.pry
   end
 
   # 子カテゴリーが選択された後に動くアクション
@@ -69,7 +70,16 @@ class ProductsController < ApplicationController
 
   def index
     @q = Product.ransack(params[:q])
-    @product = @q.result(distinct: true)
+    @products = @q.result(distinct: true)
+    @parents = Category.where(ancestry: nil)
+
+    
+
+  
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def destroy
@@ -89,4 +99,9 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
+    # def ransaq_params
+    #   params.require(:q)
+    # end
+
 end
