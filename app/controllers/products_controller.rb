@@ -73,9 +73,6 @@ class ProductsController < ApplicationController
     @products = @q.result(distinct: true)
     @parents = Category.where(ancestry: nil)
 
-    # @category_parent_array = ["---"]
-    # @category_parent_array = Category.limit(13).pluck(:name)
-    # binding.pry
     
 
   

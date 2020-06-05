@@ -2,7 +2,6 @@
 .practice
   = search_form_for @q do |f|
   
-    -# = f.label :product_name_cont
     = f.search_field :product_name_cont
 
     = f.label :price_gt
@@ -11,20 +10,8 @@
     = f.label :price_lt
     = f.search_field :price_lt
     .listing-product-detail__category
-      -# = f.select(:category_id_eq, options_for_select(@category_parent_array),class: 'listing-select-wrapper__box--select', id: 'parent_category',prompt: "選択して下さい")
-      -# = f.select :category_id_eq, options_for_select(@parents.map{|parent|[parent[:name], parent[:id]]}), {prompt: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
       = f.collection_select(:category_id_eq, @parents, :id, :name, {include_blank: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'q_category_id_eq'})
-    -# = f.select(:category_id_eq, @category_parent_array{options_for_select}, {class: 'listing-select-wrapper__box--select', id: 'parent_category',prompt: "選択して下さい"})
-    -# = f.select( :category_id_eq, {options_for_select(@category_parent_array)}, {class: 'listing-select-wrapper__box--select', id: 'parent_category',prompt: "選択して下さい"} )
-    -# f.select( プロパティ名, タグの情 報, {オプション}, {HTMLオプション} )
 
-    -# プロパティ名 : カラム名 (下記に補足あり)
-    -# タグの情報 : セレクトボックス表示に使うデータの配列 or ハッシュ
-    -# オプション : セレクトボックスのオプション（include_blank, selectedなど）
-    -# HTMLオプション : HTMLのオプション (id, classなど)
-    -# = f.collection_check_boxes :arrival_date_start
-    -# = f.collection_select :category_id_eq, @category_parent_array, :id, :name
-    -# かてごりぜんぶでるチェックボックスができんf.つければさーちにひっかかる
     = f.submit
   
   %table
@@ -32,7 +19,6 @@
       %tr
         %th Name
         %th Age
-        -# %th{:colspan => “0”}
     %tbody
       - @products.each do |product|
         %tr
