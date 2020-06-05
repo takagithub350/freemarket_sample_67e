@@ -108,9 +108,10 @@ a{
         margin-bottom: 20px;
     }
     .like {
+        flex-wrap: wrap;
         display: flex;
         .like__List {
-            margin-left: 10px;
+            margin-right: 24px;
             &__name {
                 background-color: #f8f8f8;
                 text-align: center;
@@ -120,6 +121,7 @@ a{
                 background-color: #f8f8f8;
                 text-align: center;
                 font-size: 15px;
+                margin-bottom: 24px;
             }
         }
     }
