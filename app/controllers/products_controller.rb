@@ -67,7 +67,12 @@ class ProductsController < ApplicationController
 
   def index
     @q = Product.ransack(params[:q])
-    @product = @q.result(distinct: true)
+    @products = @q.result(distinct: true)
+    @parents = Category.where(ancestry: nil)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def destroy
