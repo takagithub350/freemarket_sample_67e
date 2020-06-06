@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
 
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children    #親カテゴリーに紐付く子カテゴリーを取得
+    @category_children = Category.find("#{params[:parent_id]}").children    #親カテゴリーに紐付く子カテゴリーを取得
+    # binding.pry
   end
 
   # 子カテゴリーが選択された後に動くアクション
@@ -63,6 +64,8 @@ class ProductsController < ApplicationController
     @product= Product.find(params[:id])
     @user= User.find_by(id: @product.user_id)
     @category = Category.find(@product.category_id)
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def index
@@ -92,4 +95,9 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
+    # def ransaq_params
+    #   params.require(:q)
+    # end
+
 end

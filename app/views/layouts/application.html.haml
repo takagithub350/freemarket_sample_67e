@@ -13,4 +13,7 @@
     %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.js"}
     %script{type: "text/javascript", src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
   %body
+    .notifications
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: key)
     = yield

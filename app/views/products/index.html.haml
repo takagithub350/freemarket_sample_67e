@@ -20,6 +20,7 @@
       .listing-product-detail__category
         = f.collection_select(:category_id_eq, @parents, :id, :name, {include_blank: “選択して下さい“}, {class: ‘listing-select-wrapper__box--select’, id: ‘q_category_id_eq’})
       = f.submit
+
   %div.menu
     .item
       検索結果
@@ -29,6 +30,7 @@
         = link_to products_path(product.id), method: :get do
           .like__List__image
             = image_tag product.images[0].image.url, height: ‘150px’, width: ‘160px’, class: ‘.like__image__box’
+
           .like__List__name
             %li
             = product.product_name
@@ -36,3 +38,4 @@
             %li
               = product.price
               円
+
