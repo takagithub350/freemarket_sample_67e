@@ -1,0 +1,20 @@
+.top_word{
+  text-align: center;
+  padding: 20px;
+  border-bottom: solid 1px #3CCACE;
+}
+.search_box{
+  display: flex;
+
+  .input_searchbox{
+    width: 40%;
+
+  }
+}
+.search_btn{
+  background-color: #3CCACE;
+  color: #FFFFFF;
+  width: 100%;
+  line-height: 48px;
+  margin-top: 20px;
+}

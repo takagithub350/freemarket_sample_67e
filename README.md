@@ -18,6 +18,7 @@
 - has_many :creditcards
 - has_mamy :comments
 - has_many :products
+- has_many :favorites
 
 
 ## addressテーブル
@@ -81,6 +82,7 @@
 - has_mamy :comments
 - has_many :images
 - belongs_to :category
+- has_many :favorites
 
 
 ## categoriesテーブル
@@ -103,8 +105,19 @@
 |column|type|options|
 |------|----|-------|
 |image|string|null: false|
-|product_id|string|null: false, foreign_key:true|
+|product_id|integer|null: false, foreign_key:true|
 
 
 ### Association
-belongs_to: product
+- belongs_to: product
+
+
+## favoritesテーブル
+|column|type|options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key:true|
+|product_id|integer|null: false, foreign_key:true|
+
+### Association
+- belongs_to: user
+- belongs_to: product
