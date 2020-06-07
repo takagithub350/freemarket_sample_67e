@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
     @product.images.build 
     @category_parent_array = ["---"]
     @category_parent_array = Category.limit(13).pluck(:name)
+    @parents = Category.where(ancestry: nil)
+
     respond_to do |format|
       format.html
       format.json
@@ -14,6 +16,7 @@ class ProductsController < ApplicationController
 
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
+    # @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
     @category_children = Category.find("#{params[:parent_id]}").children    #親カテゴリーに紐付く子カテゴリーを取得
     # binding.pry
   end
@@ -37,6 +40,7 @@ class ProductsController < ApplicationController
     @grandchild = Category.find(@product.category_id)
     @child = @grandchild.parent
     @parent = @grandchild.parent.parent
+    @parents = Category.where(ancestry: nil)
 
     @category_grandchild_array = ["---"]
     Category.where(ancestry: @grandchild.ancestry).each do |grandchild|

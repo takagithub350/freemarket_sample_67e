@@ -51,8 +51,10 @@
             %span.form-require 必須
             .listing-select-wrapper
               .listing-select-wrapper__box
-                = select_tag(:category_id, options_for_select(@category_parent_array),class: 'listing-select-wrapper__box--select', id: 'parent_category',prompt: "選択して下さい")
-                
+                -# = select_tag(:category_id, options_for_select(@category_parent_array),class: 'listing-select-wrapper__box--select', id: 'parent_category',prompt: "選択して下さい")
+                -# = select_tag(:category_id, options_for_select(@parents, :name), {class: 'listing-select-wrapper__box--select'})
+                = f.collection_select(:category_id, @parents, :id, :name, {include_blank: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'category_id'})
+
           .error-messages#category_error
 
           .sell-form__item
