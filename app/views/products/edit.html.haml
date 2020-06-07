@@ -57,7 +57,9 @@
             .listing-select-wrapper
               .listing-select-wrapper__box
                 //親カテゴリーのセレクトボックスの生成
-                = select_tag(:category_id, options_for_select(@category_parent_array, selected: @parent.name),class: 'listing-select-wrapper__box--select', id: 'parent_category')
+                -# = select_tag(:category_id, options_for_select(@category_parent_array, selected: @parent.name),class: 'listing-select-wrapper__box--select', id: 'parent_category')
+                = f.collection_select(:category_id, @parents, :id, :name, {selected: @parent.name}, {class: 'listing-select-wrapper__box--select', id: 'category_id'})
+
             .listing-select-wrapper#children_wrapper   
               .listing-select-wrapper__box
                 //親カテゴリーのセレクトボックスの生成

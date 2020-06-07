@@ -11,7 +11,6 @@
     = f.search_field :price_lt
     .listing-product-detail__category
       = f.collection_select(:category_id_eq, @parents, :id, :name, {include_blank: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'q_category_id_eq'})
-
     = f.submit
 
   %table
