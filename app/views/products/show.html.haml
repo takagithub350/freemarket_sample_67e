@@ -121,7 +121,10 @@
           = form_with(model: [@product,@comment], local: true, class: "message-content__form") do |form|
             = form.text_area :text, type: "text", class: "message-content__form--textarea"
             %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-            = form.submit "コメントする" ,type: "submit", class: "message-content__form--submit"
+            -if user_signed_in? 
+              = form.submit "コメントする" ,type: "submit", class: "message-content__form--submit"
+            -else
+
         .comment
           <コメント一覧>
           .comment__inner
