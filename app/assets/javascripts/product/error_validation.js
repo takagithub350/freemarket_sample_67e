@@ -23,7 +23,7 @@ function products_input_check(){
   // 入力内容セット
   var product_name = $("#product_name").val();
   var product_detail = $("#product_detail").val();
-  var parent_category = $("#parent_category").val();
+  var parent_category = $("#category_id").val();
   var status = $("#state-select").val();
   var postage = $("#postage-select").val();
   var delivery_method = $("#delivery-company").val();
@@ -66,7 +66,7 @@ function products_input_check(){
   //カテゴリー(出品)
   if(parent_category == ""){
     $("#category_error").html("カテゴリーを選択してください。");
-    $("#parent_category").css('border-color','red');
+    $("#category_id").css('border-color','red');
     result = false;
   }else{  //子カテゴリーのチェック
     var child_category = $("#child_category").val();

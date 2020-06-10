@@ -53,6 +53,18 @@ $(function(){
     }
   });
 
+  //カテゴリー
+  $('#category_id').on('blur',function(){
+    let value = $(this).val();
+    if(value == ""){
+      $('#category_error').text('入力してください');
+      $(this).css('border-color','red');
+    }else{
+      $('#category_error').text('');
+      $(this).css('border-color','rgb(204, 204, 204)');
+    }
+  });
+
   //状態
   $('#state-select').on('blur',function(){
     let value = $(this).val();
