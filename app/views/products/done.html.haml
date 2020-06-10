@@ -6,10 +6,12 @@
       .product__check__title 購入が完了しました！
     %li.product__check__container__01
       .left__container
-        = image_tag 'pict/flower_hyacinth.png', height: '90px', width: '90px'
+        = image_tag @product.images[0].image.url, height: '90px', width: '90px'
       .right__container
-        .product__title  ヒヤシンス
-        .product__price__mini ¥30000(送料込み) 
+        .product__title
+          = @product.product_name
+        .product__price__mini
+          = @product.price
         %br/
     .to_buy_btn
       = link_to root_path do
