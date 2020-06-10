@@ -109,7 +109,7 @@
       -elsif current_user.id == @product.user_id
         = link_to "編集する", edit_product_path, class: 'edit-btn'
         = link_to "削除する", product_path, method: :delete, class: 'delete-btn', data: {confirm: "出品情報を削除しますか？"}
-      -else
+      -elsif @product.buyer_id.nil?
         = link_to check_products_path do
           .buy-btn
             購入画面に進む
