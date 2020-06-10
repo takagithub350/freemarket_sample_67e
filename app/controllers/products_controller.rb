@@ -72,6 +72,10 @@ class ProductsController < ApplicationController
     @comments = @product.comments.includes(:user)
   end
 
+  def check
+    @product= Product.find(params[:id])
+  end
+
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
@@ -90,6 +94,41 @@ class ProductsController < ApplicationController
       redirect_to product_path
     end
   end
+
+  def buy
+    @product= Product.find(params[:id])
+    card = Card.find_by(user_id: current_user.id)
+    if card.blank?
+      redirect_to new_card_path
+    else
+      Payjp.api_key = "sk_test_96379ca7e5e06277458aa64b"
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+    end
+  end
+
+
+  def pay
+    @product= Product.find(params[:id])
+    card = Card.find_by(user_id: current_user.id)
+    Payjp.api_key = "sk_test_96379ca7e5e06277458aa64b"
+    Payjp::Charge.create(
+      :amount =>  @product.price,
+      :customer => card.customer_id,
+      :currency => 'jpy',
+    )
+    @product.update(buyer_id: current_user.id)
+    redirect_to done_product_path(@product)
+  end
+
+  def done
+    @product= Product.find(params[:id])
+  end
+
+  def  set_product
+  @product.update(buyer_id: current_user.id)
+  end
+
 
   private
   def product_params
