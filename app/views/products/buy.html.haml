@@ -25,6 +25,6 @@
         = exp_month + " / " + exp_year
       %br
         = form_tag(pay_product_path(@product), method: :post) do
-          %button 購入する
+          %button.to_buy_btn 購入する
 
 = render 'products/footer'
