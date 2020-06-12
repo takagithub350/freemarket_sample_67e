@@ -125,7 +125,7 @@
         = link_to root_path do
           %h3 新規投稿商品
       .main__box5__box__product-box
-        - @product.first(3).each do |product|
+        - @product.last(3).each do |product|
           .main__box5__box__product-box__product
             = link_to "/products/#{product.id}", method: :get do
               -if product.buyer_id.present?
@@ -166,7 +166,7 @@
         = link_to root_path do
           %h3 アーカイバ
       .main__box5__box__product-box
-        - @product.last(3).each do |product|
+        - @product.first(3).each do |product|
           .main__box5__box__product-box__product
             = link_to "/products/#{product.id}", method: :get do
               -if product.buyer_id.present?
