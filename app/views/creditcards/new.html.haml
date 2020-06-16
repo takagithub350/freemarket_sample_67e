@@ -1,0 +1,29 @@
+.wrapper
+  = render "products/header"
+  %p.users_contents
+    = render "users/side_bar"
+
+  %div.main_menu
+    %div.register_creditcard_container_form
+      %h1.form_title クレジットカード登録情報
+      .title__container
+        %label.form_item カード番号
+        %span.form_item__require 必須
+      %input.form_item__input__box__creditcard{placeholder:"  半角数字のみ"}
+      %div.title__container
+        %label.form_item 有効期限
+        %span.form_item__require 必須
+      %div.form_input__expiration__date
+        .card__month
+          = select_tag 'creditcard[month_data]', options_for_select(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]),class:'expiration__date'
+        .card__month__and__year 月
+        .card__year
+          = select_tag 'creditcard[year_data]', options_for_select(["20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]),class:'expiration__date'
+        .card__month__and__year 年
+      .title__container
+        %label.form_item セキュリティコード
+        %span.form_item__require 必須
+      %input.form_item__input__box__creditcard{placeholder:"  カード背面４桁もしくは３桁の番号"}
+      %div.form_item__hint カード裏面の番号とは？
+      %div.form__add__creditcard__btn
+        %button.add__creditcard__btn 追加する

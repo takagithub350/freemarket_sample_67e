@@ -1,0 +1,351 @@
+* {
+  box-sizing: border-box;
+}
+
+.product-header{
+  background-color: #f8f8f8;
+  height: 128px;
+  text-align: center;
+  h1 {
+    margin: 40px 0 0;
+    display: inline-block;
+    .product-header__icon__image {
+      width: 185px;
+      height: 49px;
+      line-height: 49px;
+      display: inline-block;
+      margin: 0 8px 0 0;
+      img {
+        width: 185px;
+        height: 49px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+.wrapper {
+  background-color: #f8f8f8;
+  .sell-form {
+    margin: 0 auto;
+    background-color: white;
+    width: 700px;
+    height: 100%;
+    &__image {
+      padding: 40px;
+      border-bottom: 1px solid #f8f8f8;
+      font-size: 14px;
+      color:#333;
+      &--head {
+        font-weight: 600;
+      }
+      &__max10-upload {
+        margin: 16px 0;
+      }
+      &__dropbox {
+        margin-bottom: 8px;
+          font-size:12px;
+          text-align: center;
+        &__label {
+          align-content: center;
+          -webkit-box-align: center;
+          align-items: center;
+          background-color: rgb(245, 245, 245);
+          cursor: pointer;
+          display: flex;
+          height: 150px;
+          flex-wrap: wrap;
+          -webkit-box-pack: center;
+          justify-content: center;
+          position: relative;
+          border-width: 1px;
+          border-style: dashed;
+          border-color: rgb(204, 204, 204);
+          border-image: initial;
+          transition: all 0.5s ease-out 0s;
+        }
+        &__content {
+          font-size: 12px;
+          line-height: 1.4em;
+          text-align: center;
+          width: 100%;
+
+        }
+      }
+    }
+    &__content {
+      padding: 40px;
+      font-size: 14px;
+      color:#333;
+      border-bottom: 1px solid #f8f8f8;
+    }
+    .sell-form__item {
+      margin-bottom: 30px;
+      label {
+        font-weight: 600;
+      }
+    }
+    
+    .sell-form__sample {
+      position: relative;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: inherit;
+      height: 48px;
+      margin: 0;
+      outline: none;
+      padding: 0 16px;
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .sell-form__selection {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #222;
+      font-size: 16px;
+      height: 48px;
+      line-height: 1;
+      margin: 0;
+      outline: none;
+      padding: 0 56px 0 16px;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .sell-form__box__input__label__number {
+      text-align:right;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: inherit;
+      height: 48px;
+      margin: 0;
+      outline: none;
+      padding: 0 16px;
+      width: 285px;
+    }
+  }
+  .form-require {
+    color: #fff;
+    background: #ea352d;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 12px;
+    vertical-align: top;
+  }
+  .form-arbitrary {
+    margin-bottom: 8px;
+    padding: 0 4px;
+    color: #FFF;
+    background-color: #BFBFBF;
+  }
+  .form-group{
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    font-weight: 600;
+    display: inline-block;
+    color:#333;
+    font-size: 14px;
+  }
+  .form-group div {
+    margin-top: 10px;
+  }
+  .form-group textarea{
+    width:100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #222;
+    font-size: 16px;
+    margin: 0;
+    outline: none;
+    padding: 13px 16px;
+    resize: vertical;
+    vertical-align: middle;
+  }
+  .form-question {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #0099e8;
+    color: white;
+    line-height: 19px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .sell-form__summary {
+    color: rgb(136, 136, 136);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4em;
+    margin-bottom: 24px;
+  }
+  .sell-form__send {
+    margin-top: 30px;
+  }
+  .sell-price .form-group .li-left {
+    width: 50%;
+    line-height: 80px;
+  }
+  .sell-price .form-group .li-right {
+    float: right;
+  }
+  .item-price {
+    .form-group__price {
+      .sell-price__input {
+        text-align: right;
+        .price-mark {
+          line-height: 48px;
+          float: left;
+          font-size: 14px;
+          transform: translateX(15px);
+          font-weight: 100;
+        }
+      }
+    }
+  }
+  .sell-price__commission {
+    border-bottom: 1px solid #ccc;
+    padding: 12px 0;
+    &__ratio {
+      font-size:14px;
+    }
+    .sell-price__box {
+      float: right;
+    }
+  }
+  .sell-price__profit {
+    padding: 25px 0;
+    .total-right {
+      float: right;
+    }
+  }
+  .sell-form__btn {
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    
+    .btn-red {
+      align-items: center;
+      width: 100%;
+      margin: 0 auto 20px;
+      font-size: 17px;
+      .red-btn {
+        background-color: #ea352d;
+        border: 1px solid #ea352d;
+        line-height: 48px;
+        width: 60%;
+        font-size: 17px;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+    .btn-gray {
+      background-color: #ccc;
+      border: 1px solid #ccc;
+      width: 60%;
+      margin: 0 auto;
+      a {
+        font-size: 17px;
+        color: black;
+        text-decoration: none;
+      }
+    }
+    .btn-blue {
+      a {
+        color: #0095ee;
+        text-decoration: none;
+      }
+    }
+    .precautions {
+      text-align: left;
+      font-size: 12px;
+      line-height: 20px;
+      .blue-font {
+        color: #0095ee;
+      }
+    }
+  }
+  .fa-angle-down {
+    position: absolute;
+    right: 16px;
+    top: 40%;
+    z-index: 2;
+    color: #888;
+    font-size: 25px;
+  }
+  .icon-wrap {
+    position: relative;
+    background: #fff;
+  }
+  .price::placeholder {
+    text-align: right;
+  }
+}
+
+.product-footer {
+  background-color: #f8f8f8;
+  height: 180px;
+  text-align: center;
+  padding: 20px 0;
+  .footer-product__contract li {
+    display: inline-block;
+    margin: 0 10px 20px 0;
+  }
+  .footer-product__logo {
+    width: 185px;
+    height: 49px;
+    line-height: 49px;
+    display: inline-block;
+    margin-bottom: 10px;
+    img {
+      width: 185px;
+      height: 49px;
+      vertical-align: middle;
+    }
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+.listing-select-wrapper__box--select{
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  height: 48px;
+  margin: 0;
+  outline: none;
+  padding: 0 16px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.listining-product-datail__category{
+  margin-bottom: 30px;
+
+}
+.listing-default__label{
+  font-weight: 600;
+}
+
+.form-require{
+  font-weight: 600;
+}

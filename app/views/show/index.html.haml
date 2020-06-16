@@ -1,0 +1,175 @@
+-# = render 'layouts/header'
+
+.header
+  .header__box
+    .header__box__1
+      .header__box__1__title-box
+        .header__box__1__title-box__title
+          = link_to root_path do
+            = image_tag 'logo/logo.png', height: '40px', width: '140px'
+          
+      .header__box__1__search-box
+        = form_with(url: root_path, local: true, method: :get, class: "header__box__1__search-box__box") do |f|
+          = f.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: 'header__box__1__search-box__box__submit'
+    .header__box__2
+      .header__box__2__content
+        %ul
+          %li
+            = link_to root_path do
+              カテゴリー
+            
+          %li
+            = link_to root_path do
+              ブランド
+      .header__box__2__login
+        %ul
+          %li
+            = link_to root_path do
+              マイページ
+
+.show-items-containers
+  %section.item-box-container
+    %h1.item-name product
+    
+    .item-main-content
+      .item-photo
+        .item-photo__top
+          = image_tag 'pict/flower_hyacinth.png',height: '250px', width: '500px'
+          .item-photo__bottom__1
+            %li 
+              = image_tag 'pict/flower_hyacinth.png',height: '150px', width: '160px'
+            %li 
+              = image_tag 'pict/flower_hyacinth.png',height: '150px', width: '160px'
+            %li 
+              = image_tag 'pict/flower_hyacinth.png',height: '150px', width: '160px'
+
+      
+    .item-price
+      %span.item-price__bold
+        = @price = Product.all.last[:price]
+        円
+      %span.item-price__tax 
+        (税込)
+      %span.item-price__shipping-fee 
+        送料込み
+      
+    .item-account
+    親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+    
+    %table.item-detail-table
+      %tbody
+        %tr
+          %th 出品者
+          %td hoge
+        %tr    
+          %th カテゴリー
+
+        %tr    
+          %th ブランド
+          %td 
+        %tr    
+          %th 商品のサイズ
+          %td 
+              
+        %tr
+          %th 商品の状態
+          %td 未使用に近い
+            
+        %tr
+          %th 配送料の負担
+          %td 送料込み（出品者負担）
+        %tr
+          %th 配送元の地域
+          %td 岩手県
+        %tr
+          %th 発送日の目安
+          %td ４−7日で発送
+
+    .item-button
+      .item-button__left
+        %p ✴︎お気に入り
+    
+      
+      .item-button__right
+        = link_to "不適切な商品の通報", "#", class: "item-button__right__nogood"
+
+    .item-detail-message
+      .message-container
+        %textarea(type="text" cols="71" rows="7")
+        .message-content
+          %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        
+
+                
+   
+    .item-comment
+      = link_to check_products_path do
+        .itm-comment_center
+        購入画面に進む
+        
+    .item-comment
+      = link_to "コメントする", "#", class: "item-comment__center"
+              
+
+    %ul.nav-item
+      .nav-item__link-prev
+        %li
+          = link_to "＜ 前の商品", "#", class: "delete-decoration"
+      .nav-item__link-next
+        %li
+          = link_to "後ろの商品 ＞", "#", class: "delete-decoration"
+
+.footer-sub
+  .footer-sub__box
+    %h2 だれでもかんたん、人生を変えるフリマアプリ
+    %p 今すぐ無料ダウンロード
+  .footer-sub__app-google
+    .footer-sub__app-google__app
+      = link_to "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8" do
+        = image_tag 'logo/app.png', height: '40px', width: '135px'
+    .footer-sub__app-google__google
+      = link_to "https://play.google.com/store/apps?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+        = image_tag 'logo/google-play-badge.png', alt: 'Google Play で手に入れよう', height: '', width: '160px'
+.footer
+  .footer__contents
+    .footer__contents__content
+      %h2 FURIMAについて
+      %ul
+        %li
+          = link_to root_path do
+            会社概要（運営会社）
+        %li
+          = link_to root_path do
+            プライバシーポリシー
+        %li
+          = link_to root_path do
+            FURIMA利用規約
+        %li
+          = link_to root_path do
+            ポイントに関する特約
+    .footer__contents__content
+      %h2 FURIMAを見る
+      %ul
+        %li
+          = link_to root_path do
+            カテゴリー一覧
+        %li
+          = link_to root_path do
+            ブランド一覧
+    .footer__contents__content
+      %h2 ヘルプ＆ガイド
+      %ul
+        %li
+          = link_to root_path do
+            FURIMAガイド
+        %li
+          = link_to root_path do
+            FURIMAロゴ利用ガイドライン
+        %li
+          = link_to root_path do
+            お知らせ
+  .footer__logo
+    %h1
+      = image_tag 'logo/logo-white.png', height: '44px', width: '154px'
+  %p © FURIMA

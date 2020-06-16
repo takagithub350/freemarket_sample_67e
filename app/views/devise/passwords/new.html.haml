@@ -1,0 +1,13 @@
+= render "products/header"
+.signup_page
+  .new_title パスワードお忘れの方はメールアドレス記入お願いします。
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email" , class: "input_box"
+    .actions
+      = f.submit "メール送信", class: "red_btn"
+  = render "devise/shared/links"
+= render "products/footer"

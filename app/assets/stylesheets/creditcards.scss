@@ -1,0 +1,83 @@
+.register_creditcard_container_form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 40%;
+    margin-top: -200px;
+}
+
+.form_item{
+    display: flex;
+    position: relative;
+    float: left;
+    &__require{
+    float: left;
+    font-size: 15px;
+    width: 50px;
+    height: 25px;
+    color: white;
+    background-color: red;
+    text-align: center;
+    line-height: 25px;
+    margin-left: 20px;
+    }
+    &__hint{
+        display:flex;
+        justify-content: flex-end;
+        font-size: 15px;
+        color: #3CCACE;
+    }
+}
+
+.form_title{
+    font-size: 25px;
+    margin-bottom: 30px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.title__container{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.form_input__expiration__date{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.card__month__and__year{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.expiration__date{
+    width:150px;
+    height: 50px;
+}
+
+.form__add__creditcard__btn{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 30px;
+}
+.add__creditcard__btn{
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    background-color:#3CCACE;
+    font-size: 20px;
+}
+
+.form_item__input__box__creditcard{
+    height: 50px;
+}

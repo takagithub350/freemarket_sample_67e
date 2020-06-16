@@ -1,0 +1,255 @@
+-if user_signed_in? 
+  = link_to new_product_path, class: "fixed_btn" do
+    %h1 出品する
+    = image_tag "icon/icon_camera.png", height: '62%', width: '62%'
+-else
+  = link_to new_user_session_path, class: "fixed_btn" do
+    %h1 出品する
+    = image_tag "icon/icon_camera.png", height: '62%', width: '62%'
+.header
+  .header__box
+    .header__box__1
+      .header__box__1__title-box
+        .header__box__1__title-box__title
+          = link_to root_path do
+            = image_tag 'logo/logo.png', height: '40px', width: '140px'
+          
+          
+      .header__box__1__search-box
+        = search_form_for(@q, url: products_path, class: "header__box__1__search-box__box" ) do |f|
+          = f.text_field :product_name_cont, placeholder: "キーワードから探す",height: '19px', class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: "header__box__1__search-box__box__submit"
+          
+    .header__box__2
+      .header__box__2__content
+        %ul
+          %li
+            = link_to categorys_path do
+              カテゴリー
+            
+          %li
+            = link_to products_path do
+              ブランド
+      .header__box__2__login
+        %ul
+          %li
+            -if user_signed_in? 
+              = link_to users_path do
+                マイページ
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+            -else
+              = link_to "新規登録", new_user_path
+              = link_to "ログイン", new_user_session_path
+
+.main
+  .main__box1
+    .main__box1__contents
+      %h2 人生を変えるフリマアプリ
+      %p
+        FURIMAはだれでもかんたんに出品・購入できる
+        %br フリマアプリです
+      .main__box1__contents__app-google
+        .main__box1__contents__app-google__app
+          = link_to "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8" do
+            = image_tag 'logo/app.png', height: '40px', width: '135px'
+        .main__box1__contents__app-google__google
+          = link_to "https://play.google.com/store/apps?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+            = image_tag 'logo/google-play-badge.png', alt: 'Google Play で手に入れよう', height: '', width: '160px'
+  .main__box2
+    %h2 FURIMAが選ばれる3つの理由
+    .main__box2__box
+      .main__box2__box__box1
+        .main__box2__box__box1__image1
+          %span 1
+          = image_tag 'pict/pict-reason-01.jpg', height: '310px', width: '310px'
+        %h3
+          %span 3分
+          ですぐに出品
+        %p スマホで入力するだけで簡単に出品できる！
+
+      .main__box2__box__box1
+        .main__box2__box__box1__image1
+          %span 2
+          = image_tag 'pict/pict-reason-02.jpg', height: '310px', width: '310px'
+        %h3
+          %span シンプル
+          で使いやすいです
+        %p めんどくさい入力は必要なく、検索も購入もスムーズ！
+      .main__box2__box__box1
+        .main__box2__box__box1__image1
+          %span 3
+          = image_tag 'pict/pict-reason-03.jpg', height: '310px', width: '310px'
+        %h3
+          手数料
+          %span 業界最安
+        %p 最大3%でお得に出品&購入！
+  .main__box3
+    .main__box3__box
+      %h2 会員数日本一位
+      %p
+      FURIMAは、アプリで最も人気
+      %br
+      出品・購入回数も業界最多です!
+      %br
+      ほしかったあの商品に出会えるかもしれません。
+      .main__box3__box__app-google
+        .main__box3__box__app-google__app
+          = link_to "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8" do
+            = image_tag 'logo/app.png', height: '40px', width: '135px'
+        .main__box3__box__app-google__google
+          = link_to "https://play.google.com/store/apps?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+            = image_tag 'logo/google-play-badge.png', alt: 'Google Play で手に入れよう', height: '', width: '160px'
+  .main__box4
+    %h2 FURIMAの特徴
+    .main__box4__box
+      .main__box4__box__box1
+        .main__box4__box__box1__image-box
+          = image_tag 'icon/icon-01.png', height: 'auto', width: '100%', class: 'main__box4__box__box1__image-box__image'
+        %h3 簡単に売り買いできる
+        %p スマホひとつで、いつでもどこでも簡単に出品・購入が可能!
+      .main__box4__box__box1
+        .main__box4__box__box1__image-box
+          = image_tag 'icon/icon-03.png', height: 'auto', width: '100%', class: 'main__box4__box__box1__image-box__image'
+        %h3 売上金は即日振り込みに対応
+        %p 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      .main__box4__box__box1
+        .main__box4__box__box1__image-box
+          = image_tag 'icon/icon-04.png', height: 'auto', width: '100%', class: 'main__box4__box__box1__image-box__image'
+        %h3 様々な支払いに対応
+        %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+  .main__box5
+    %h2 ピックアップカテゴリー
+    .main__box5__box
+      .main__box5__box__title
+        = link_to root_path do
+          %h3 新規投稿商品
+      .main__box5__box__product-box
+        - @product.last(3).each do |product|
+          .main__box5__box__product-box__product
+            = link_to "/products/#{product.id}", method: :get do
+              -if product.buyer_id.present?
+                .main__box5__box__product-box__product__image-box
+                  %span
+                    %h4 SOLD
+                  = image_tag product.images[0].image.url, height: '150px', width: '220px', class: 'main__box5__box__product-box__product__image-box__image'
+                .main__box5__box__product-box__product__show-box
+                  %h3
+                    = product.product_name
+                  .main__box5__box__product-box__product__show-box__date
+                    %ul
+                      %li
+                        = product.price
+                        円
+                    %p (税込)
+
+              - else 
+                .main__box5__box__product-box__product__image-box
+                  = image_tag product.images[0].image.url, height: '150px', width: '220px', class: 'main__box5__box__product-box__product__image-box__image'              
+                
+                .main__box5__box__product-box__product__show-box
+                  %h3
+                    = product.product_name
+                  .main__box5__box__product-box__product__show-box__date
+  
+                    %ul
+                      %li
+                        = product.price
+                        円
+                      %li 
+                    %p (税込)
+
+  .main__box5
+    %h2 ピックアップカテゴリー
+    .main__box5__box
+      .main__box5__box__title
+        = link_to root_path do
+          %h3 アーカイバ
+      .main__box5__box__product-box
+        - @product.first(3).each do |product|
+          .main__box5__box__product-box__product
+            = link_to "/products/#{product.id}", method: :get do
+              -if product.buyer_id.present?
+                .main__box5__box__product-box__product__image-box
+                  %span
+                    %h4 SOLD
+                  = image_tag product.images[0].image.url, height: '150px', width: '220px', class: 'main__box5__box__product-box__product__image-box__image'
+                .main__box5__box__product-box__product__show-box
+                  %h3
+                    = product.product_name
+                  .main__box5__box__product-box__product__show-box__date
+                    %ul
+                      %li
+                        = product.price
+                        円
+                    %p (税込)
+
+              - else 
+                .main__box5__box__product-box__product__image-box
+                  = image_tag product.images[0].image.url, height: '150px', width: '220px', class: 'main__box5__box__product-box__product__image-box__image'              
+                
+                .main__box5__box__product-box__product__show-box
+                  %h3
+                    = product.product_name
+                  .main__box5__box__product-box__product__show-box__date
+  
+                    %ul
+                      %li
+                        = product.price
+                        円
+                      %li 
+                    %p (税込)
+
+.footer-sub
+  .footer-sub__box
+    %h2 だれでもかんたん、人生を変えるフリマアプリ
+    %p 今すぐ無料ダウンロード
+  .footer-sub__app-google
+    .footer-sub__app-google__app
+      = link_to "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8" do
+        = image_tag 'logo/app.png', height: '40px', width: '135px'
+    .footer-sub__app-google__google
+      = link_to "https://play.google.com/store/apps?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+        = image_tag 'logo/google-play-badge.png', alt: 'Google Play で手に入れよう', height: '', width: '160px'
+.footer
+  .footer__contents
+    .footer__contents__content
+      %h2 FURIMAについて
+      %ul
+        %li
+          = link_to root_path do
+            会社概要（運営会社）
+        %li
+          = link_to root_path do
+            プライバシーポリシー
+        %li
+          = link_to root_path do
+            FURIMA利用規約
+        %li
+          = link_to root_path do
+            ポイントに関する特約
+    .footer__contents__content
+      %h2 FURIMAを見る
+      %ul
+        %li
+          = link_to root_path do
+            カテゴリー一覧
+        %li
+          = link_to root_path do
+            ブランド一覧
+    .footer__contents__content
+      %h2 ヘルプ＆ガイド
+      %ul
+        %li
+          = link_to root_path do
+            FURIMAガイド
+        %li
+          = link_to root_path do
+            FURIMAロゴ利用ガイドライン
+        %li
+          = link_to root_path do
+            お知らせ
+  .footer__logo
+    %h1
+      = image_tag 'logo/logo-white.png', height: '44px', width: '154px'
+  %p © FURIMA

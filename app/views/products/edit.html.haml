@@ -1,0 +1,195 @@
+.product-header
+  = render 'header'
+
+.wrapper
+  .sell-form
+    = form_with model: @product, local: true do |f|
+      .sell-form__image
+        %h3.sell-form__image--head
+          出品画像
+          %span.form-require
+            必須
+        %p.sell-form__image__max10-upload
+          最大5枚までアップロードできます
+        #image-box2
+          #previews2
+            - if @product.persisted?
+              - @product.images.each_with_index do |image, i|
+                %li.adsaf
+                  = image_tag image.image.url, data: { index: i }, class: "edit_img_#{i}",id: :pre_img
+                  .js-remove{data: { index: i }, name: "[edit_remove][#{i}]"} 削除
+          = f.fields_for :images do |image|
+            %label.js-file_group{"data-index": "#{image.index}", id: "dropArea2"}
+              %pre.visible-pc
+                %i.icon-camera.fas.fa-camera
+              = image.file_field :image, class: 'js-file2',style: "display:none"
+              = image.hidden_field :_destroy, data:{ index: image.index }, value: 0, class: "delete_img_#{image.index}"
+          - if @product.persisted?
+            .js-file_group{"data-index": "#{@product.images.count}", style: "display:none"}
+              = file_field_tag :imgae, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file2', id: "img-file", style: "display:none"
+          
+        .error-messages#img_error
+
+      .sell-form__content
+        .form-group
+          %label
+            商品名
+            %span.form-require 必須
+          .icon-wrap
+            = f.text_field :product_name, class: 'sell-form__sample', placeholder: '40文字まで',id: 'product_name'
+        .error-messages#product_name_error
+
+        .form-group
+          %label
+            商品の説明
+            %span.form-require 必須
+          %div
+            = f.text_area :explanation, class: 'sell-form__description', placeholder: '商品の説明(必須 1,000文字以内)                                                           (色、素材、重さ、定価、注意点など)                                                               例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', rows: '5',id: 'product_detail'
+        .error-messages#text_error
+
+      .sell-form__content
+        %h3.sell-form__summary
+          商品の詳細
+        .form-box
+          .listing-product-detail__category
+            = f.label :category_id, 'カテゴリー', class: 'listing-default__label'
+            %span.form-require 必須
+            .listing-select-wrapper
+              .listing-select-wrapper__box
+                //親カテゴリーのセレクトボックスの生成
+                -# = select_tag(:category_id, options_for_select(@category_parent_array, selected: @parent.name),class: 'listing-select-wrapper__box--select', id: 'parent_category')
+                = f.collection_select(:category_id, @parents, :id, :name, {selected: @parent.name}, {class: 'listing-select-wrapper__box--select', id: 'category_id'})
+
+            .listing-select-wrapper#children_wrapper   
+              .listing-select-wrapper__box
+                //親カテゴリーのセレクトボックスの生成
+                %select{class: 'listing-select-wrapper__box--select', id: 'child_category'}
+                  %option{value: "---","data-category": "---"} ---
+                  %option{value: "#{@child.id}","data-category": "#{@child.id}", selected: true} #{@child.name}
+                  - @child.siblings.each do |child|
+                    %option{value: "#{child.id}","data-category": "#{child.id}"} #{child.name}
+            .listing-select-wrapper#grandchildren_wrapper     
+              .listing-select-wrapper__box
+                #grandchildren_wrapper.listing-select-wrapper__added
+                  .listing-select-wrapper__box
+                    = f.collection_select(:category_id, @grand_child, :id, :name, {prompt: "---"}, {class: 'listing-select-wrapper__box--select', id: "grandchild_category"})
+          .error-messages#category_error
+
+          .sell-form__item
+            %label
+              ブランド
+              %span.form-arbitrary 任意
+            .select-wrap
+              = f.text_field :brand, class: 'sell-form__sample', placeholder: '例) シャネル'
+              
+          .sell-form__item
+            %label
+              商品の状態
+              %span.form-require 必須
+            .icon-wrap
+              = select_tag 'product[status]', options_for_select(["新品、未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"],{:selected => @product.status.to_s}),{prompt: "選択して下さい",class:'sell-form__selection',id: 'state-select'}
+              = icon('fas', 'angle-down')
+          .error-messages#state_error
+
+      .sell-form__content
+        %span.sell-form__summary 配送について
+        %span.form-question ?
+        .sell-form__send
+          .form-group
+            %label
+              配送料の負担
+              %span.form-require 必須
+            .icon-wrap
+              = select_tag 'product[postage]', options_for_select(["送料込み（出品者負担）", "着払い（購入者負担）"],{:selected => @product.postage.to_s}),{prompt: "選択して下さい",class:'sell-form__selection',id: 'postage-select'}
+              = icon('fas', 'angle-down')
+          .error-messages#postage_error
+
+          .form-group
+            %label
+              配達の方法
+              %span.form-require 必須
+            .icon-wrap
+              = select_tag 'product[delivery_method]', options_for_select(["未定", "レターパック", "日本郵便", "ヤマト運輸", "佐川急便", "その他"],{:selected => @product.delivery_method.to_s}),{prompt: "選択して下さい",class:'sell-form__selection',id: 'delivery-company'}
+              = icon('fas', 'angle-down')
+          .error-messages#delivery_method_error
+
+          .form-group
+            %label
+              発送元の地域
+              %span.form-require 必須
+            .icon-wrap
+              = f.collection_select :delivery_origin, Prefecture.all, :id,:name, {prompt: "選択して下さい"}, {class: "sell-form__selection",id: 'address-select'}
+              = icon('fas', 'angle-down')
+          .error-messages#delivery_origin_error
+
+          .form-group
+            %label
+              発送までの日数
+              %span.form-require 必須
+            .icon-wrap
+              = select_tag 'product[arrival_date]', options_for_select(["１〜２日で発送", "２〜３日で発送", "４〜７日で発送"],{:selected => @product.arrival_date.to_s}),{prompt: "選択して下さい", class:'sell-form__selection',id: 'delivery_days-select',selected: "arrival_date"}
+              = icon('fas', 'angle-down')
+          .error-messages#arrival_date_error
+
+      .sell-form__content
+        %span.sell-form__summary 販売価格(¥300~9,999,999)
+        %span.form-question ?
+        .sell-form__box
+          .sell-price
+            .form-group
+              .form-group__price
+                %label.li-left
+                  販売価格
+                  %span.form-require 必須
+                .li-right.sell-price__input
+                  %span.price-mark
+                    = f.label :price, class: 'sell-form__box__input__label' do
+                      ¥
+                      = f.number_field :price, {placeholder: '0', autocomplete:"off", class: 'sell-form__box__input__label__number', required: "required",id: "product_price"}
+            .error-messages
+              .error-messages__price#price_error
+
+            .sell-price__commission
+              .sell-price__commission__ratio
+                販売手数料（10%）
+                %span.sell-price__box
+                  ー
+            .sell-price__profit
+              .l-left.profit
+                販売利益
+                %span.total-right.profits
+                  ー
+
+        .sell-form__btn
+          .btn-red
+            = f.submit '保存する', class: 'red-btn',id: :submit
+          
+          .btn-blue
+            = link_to 'もどる', root_path, class: "btn-blue"
+
+          %p.precautions
+            %span.black-font 
+              禁止されている
+            %span.blue-font
+              行為
+            %span.black-font
+              および
+            %span.blue-font
+              出品物
+            %span.black-font
+              を必ずご確認ください。
+            %span.blue-font
+              偽ブランド品
+            %span.black-font
+              や
+            %span.blue-font
+              盗品物
+            %span.black-font
+              などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+            %span.blue-font
+              加盟店規約
+            %span.black-font
+              に同意したことになります。
+
+.product-footer
+  = render 'footer'

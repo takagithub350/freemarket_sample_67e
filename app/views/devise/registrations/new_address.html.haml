@@ -1,0 +1,38 @@
+= render "products/header"
+.signup_page
+  .new_title 送付先住所情報登録
+  = form_for @address do |f|
+    = render "devise/shared/error_messages", resource: @address
+    .field
+      = f.label :郵便番号
+      %span.form_require 必須
+      %br/
+      = f.text_field :zipcode, :placeholder=>"111-1111", class: "input_box"
+    .field
+      = f.label :都道府県
+      %span.form_require 必須
+      %br/
+      = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt:"--"
+      %br/
+    .field
+      = f.label :市区町村
+      %span.form_require 必須
+      %br/
+      = f.text_field :city, :placeholder=>"〇〇市又は〇〇区", class: "input_box"
+    .field
+      = f.label :番地
+      %span.form_require 必須
+      %br/
+      = f.text_field :block, :placeholder=>"〇〇■丁目▲番地×など", class: "input_box"
+    .field
+      = f.label :"マンション名,ビル名 部屋番号"
+      %br/
+      = f.text_field  :building, :placeholder=>"フリママンション111号室など", class: "input_box"
+    .field
+      = f.label :電話番号
+      %span.form_require 必須
+      %br/
+      = f.text_field :phone_number, :placeholder=>"000-0000-0000など", class: "input_box"
+    .actions
+      = f.submit "完了", class: "red_btn"
+= render "products/footer"

@@ -1,0 +1,62 @@
+.wrapper
+  .header
+    .header__box
+      .header__box__1
+        .header__box__1__title-box
+          .header__box__1__title-box__title
+            = link_to root_path do
+              = image_tag 'logo/logo.png', height: '40px', width: '140px'
+            
+            
+        .header__box__1__search-box
+          = search_form_for(@q, url: products_path, class: "header__box__1__search-box__box" ) do |f|
+            = f.text_field :product_name_cont, placeholder: "キーワードから探す",height: '19px', class: "header__box__1__search-box__box__text"
+            = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: "header__box__1__search-box__box__submit"
+            
+  .practice
+    .top_word
+      詳細検索
+
+    = search_form_for @q do |f|
+      .item
+        キーワードを追加する
+      = f.search_field :product_name_cont
+      %br/
+      %br/
+
+      .item
+        価格(円)
+        %br/
+        ※minより大きく、max未満での検索
+        .search_box
+          = f.search_field :price_gt, class: "input_searchbox", placeholder: "min"
+          .item
+          〜
+          = f.search_field :price_lt, class: "input_searchbox", placeholder: "max"
+
+      %br/
+      %br/
+      .listing-product-detail__category
+        カテゴリー検索
+        = f.collection_select(:category_id_eq, @parents, :id, :name, {include_blank: "選択して下さい"}, {class: 'listing-select-wrapper__box--select', id: 'q_category_id_eq'})
+
+      = f.submit "検索する", class: "search_btn"
+
+
+  %div.menu
+    .item
+      検索結果
+    .like
+      - @products.each do |product|
+        .like__List
+        = link_to "/products/#{product.id}", method: :get do
+          .like__List__image
+            = image_tag product.images[0].image.url, height: '150px', width: '160px', class: '.like__image__box'
+          .like__List__name
+            %li
+            = product.product_name
+          .like__List__price
+            %li
+              = product.price
+              円
+  

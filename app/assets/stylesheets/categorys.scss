@@ -1,0 +1,110 @@
+
+.category {
+  background: #f8f8f8;
+  &__main{
+    padding: 40px;
+    margin: 0 auto;
+    &__img{
+      width: 100%;
+      height: 238px;
+      background-image: image-url("pict/bg_gray-e0aa05b9ec7d73e218e96e2059adbff98469932e802bf23ac6a2e9d1183b18ba.png");
+      vertical-align: bottom;
+    }
+    &__index {
+      width: 700px;
+      margin: 0 auto;
+      &__list--nav{
+        &__root {
+          background-color: #fff;
+          border-radius: 4px;
+          min-width: 80px;
+          line-height: 40px;
+          box-shadow: 0 0 5px rgba(0,0,0,0.4);
+          text-align: center;
+          padding: 0 30px;
+          margin: 5px;
+          color: #333;
+          text-decoration: none;
+          display: inline-block;
+        }
+      }
+      &__list--box{
+        text-decoration: none;
+        display: block;
+        border-radius: 5px 5px 0 0;
+        padding: 16px 10px 8px;
+        background-color: #3CCACE;
+        color: #fff;
+        text-align: left;
+        font-weight: bold;
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+.invisual{
+  &__title{
+    text-decoration: none;
+    display: block;
+    border-radius: 5px 5px 0 0;
+    padding: 16px 10px 8px;
+    background-color: #3CCACE;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+    font-size: 22px;
+    h3 {
+      color: white;
+      text-decoration: none;
+      display: block;
+      border-radius: 5px 5px 0 0;      background-color: #3CCACE;
+      text-align: left;
+      font-weight: bold;
+      font-size: 22px;
+    }
+  }
+}
+
+.invisual__list__sub-category-name{
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  padding-left: 5px;
+  background-color: white;
+}
+
+.child_box__list{
+  color: #ffb340;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 10px 0;
+  display: inline-block;
+  width: calc(100% / 2);
+  padding-left: 20px;
+}
+
+.invisual__list{
+  background-color:white;
+  margin-bottom: 10px;
+}
+
+.breadCrumbs {
+  width: 100%;
+  border-top: 1px solid #eee;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  position: relative;
+  padding: 0 60px;
+  display: block;
+  height: 50px;
+}
+
+.fa.fa-arrow-up{
+  font-size: 20px;
+}
+
+.mornin{
+  width: 100%;
+  height: 50px;
+}

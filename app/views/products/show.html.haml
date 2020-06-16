@@ -1,0 +1,198 @@
+-# = render 'layouts/header'
+
+.header
+  .header__box
+    .header__box__1
+      .header__box__1__title-box
+        .header__box__1__title-box__title
+          = link_to root_path do
+            = image_tag 'logo/logo.png', height: '40px', width: '140px'
+          
+      .header__box__1__search-box
+        = form_with(url: root_path, local: true, method: :get, class: "header__box__1__search-box__box") do |f|
+          = f.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: 'header__box__1__search-box__box__submit'
+    .header__box__2
+      .header__box__2__content
+        %ul
+          %li
+            = link_to root_path do
+              カテゴリー
+            
+          %li
+            = link_to root_path do
+              ブランド
+      .header__box__2__login
+        %ul
+          %li
+            = link_to root_path do
+              マイページ
+
+.show-items-containers
+  %section.item-box-container
+    %h1.item-name 
+      = @product.product_name
+    
+    .item-main-content
+      .item-photo
+        .item-photo__top
+          = image_tag @product.images[0].image.url, height: '250px', width: '500px'
+        .item-photo__bottom__1
+          - @product.images.each_with_index do |image, i|
+            = image_tag image.image.url, data: { index: i }, class: 'item-photo__bottom'
+
+      
+    .item-price
+      %span.item-price__bold
+        = @product.price
+      %span.item-price__tax 
+        (税込)
+      %span.item-price__shipping-fee 
+        送料込み
+      
+    .item-account
+      = @product.explanation
+    
+    %table.item-detail-table
+      %tbody
+        %tr
+          %th 出品者
+          %td 
+            = @user.nickname
+        %tr    
+          %th カテゴリー
+          %td 
+            = @category.root.name
+            = @category.parent.name
+            = @category.name
+            
+        %tr    
+          %th ブランド
+          %td 
+            =@product.brand
+        %tr    
+          %th 商品のサイズ
+          %td 
+            
+              
+        %tr
+          %th 商品の状態
+          %td 
+            = @product.status
+          
+            
+        %tr
+          %th 配送料の負担
+          %td 
+            = @product.postage 
+        %tr
+          %th 配送元の地域
+          %td 
+            = Prefecture.find(@product.delivery_origin).name
+        %tr
+          %th 発送日の目安
+          %td 
+            = @product.arrival_date
+
+    .item-button
+      .favorite
+        - if user_signed_in? && @product.user.id != current_user.id
+          .favorite__button
+            .favorite__button__left
+              .favorite__button__left__iine
+                %div{id: "favorite-#{@product.id}"}
+                  = render 'favorites/favorite', { product: @product}
+
+    .product-comment
+      -if current_user.nil?
+        = link_to "ログイン", new_user_session_path, class: 'login-btn'
+      -elsif current_user.id == @product.user_id
+        = link_to "編集する", edit_product_path, class: 'edit-btn'
+        = link_to "削除する", product_path, method: :delete, class: 'delete-btn', data: {confirm: "出品情報を削除しますか？"}
+      -elsif @product.buyer_id.nil?
+        = link_to check_product_path do
+          .buy-btn
+            購入画面に進む
+
+        
+    .item-detail-message
+      .message-container
+        .message-content
+          = form_with(model: [@product,@comment], local: true, class: "message-content__form") do |form|
+            = form.text_area :text, type: "text", class: "message-content__form--textarea"
+            %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            -if user_signed_in? 
+              = form.submit "コメントする" ,type: "submit", class: "message-content__form--submit"
+            -else
+
+        .comment
+          <コメント一覧>
+          .comment__inner
+            - @comments.each do |comment|
+              .comment__inner__box
+                = link_to comment.user.nickname,user_path,class: "comment__inner__box__name"
+                .comment__inner__box__text
+                  = comment.text
+              
+
+    %ul.nav-item
+      .nav-item__link-prev
+        %li
+          = link_to "＜ 前の商品", "#", class: "delete-decoration"
+      .nav-item__link-next
+        %li
+          = link_to "後ろの商品 ＞", "#", class: "delete-decoration"
+
+.footer-sub
+  .footer-sub__box
+    %h2 だれでもかんたん、人生を変えるフリマアプリ
+    %p 今すぐ無料ダウンロード
+  .footer-sub__app-google
+    .footer-sub__app-google__app
+      = link_to "https://apps.apple.com/jp/app/itunes-store/id915061235?mt=8" do
+        = image_tag 'logo/app.png', height: '40px', width: '135px'
+    .footer-sub__app-google__google
+      = link_to "https://play.google.com/store/apps?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" do
+        = image_tag 'logo/google-play-badge.png', alt: 'Google Play で手に入れよう', height: '', width: '160px'
+.footer
+  .footer__contents
+    .footer__contents__content
+      %h2 FURIMAについて
+      %ul
+        %li
+          = link_to root_path do
+            会社概要（運営会社）
+        %li
+          = link_to root_path do
+            プライバシーポリシー
+        %li
+          = link_to root_path do
+            FURIMA利用規約
+        %li
+          = link_to root_path do
+            ポイントに関する特約
+    .footer__contents__content
+      %h2 FURIMAを見る
+      %ul
+        %li
+          = link_to root_path do
+            カテゴリー一覧
+        %li
+          = link_to root_path do
+            ブランド一覧
+    .footer__contents__content
+      %h2 ヘルプ＆ガイド
+      %ul
+        %li
+          = link_to root_path do
+            FURIMAガイド
+        %li
+          = link_to root_path do
+            FURIMAロゴ利用ガイドライン
+        %li
+          = link_to root_path do
+            お知らせ
+  .footer__logo
+    %h1
+      = image_tag 'logo/logo-white.png', height: '44px', width: '154px'
+  %p © FURIMA

@@ -1,1 +1,19 @@
-log
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+config/secrets.yml
+.DS_Store
+public/uploads
+# Ignore uploaded files in development
+*.env
+/storage/*
+!/storage/.keep
+/node_modules
+/yarn-error.log
+/public/assets
+.byebug_history
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/public/image
+/public/uploads

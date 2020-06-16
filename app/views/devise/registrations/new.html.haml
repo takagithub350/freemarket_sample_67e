@@ -1,0 +1,54 @@
+= render "products/header"
+.signup_page
+  .new_title 会員情報入力
+  = form_for(@user, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: @user
+    .confirmation 本人確認
+    .confirmation 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+    
+    .field
+      = f.label :ニックネーム
+      %span.form_require 必須
+      %br/
+      = f.text_field :nickname, :placeholder=>"カツオさん",  class: "input_box"
+    .field
+      = f.label :お名前
+      %span.form_require 必須
+      %br/
+      = f.text_field :first_name,  :placeholder=>"振間", class: "input_box__half"
+      = f.text_field :last_name, :placeholder=>"太郎", class: "input_box__half"
+    .field
+      = f.label :"お名前(カナ)"
+      %span.form_require 必須
+      %br/
+      = f.text_field :first_name_kana, :placeholder=>"フリマ", class: "input_box__half"
+      = f.text_field :last_name_kana, :placeholder=>"タロウ", class: "input_box__half"
+    .field
+      = f.label :生年月日
+      %span.form_require 必須
+      %br/
+      = f.date_select :birth_date, use_month_numbers: true ,start_year: 1930, end_year: (Time.now.year - 10), prompt:"--"
+    .field
+      = f.label :email
+      %span.form_require 必須
+      %br/
+      = f.email_field :email, autofocus: true, :placeholder=>"PC・携帯どちらでも可",  autocomplete: "email", class: "input_box"
+    - if @sns_id.present?
+      =hidden_field_tag :sns_auth, true
+    -else
+      .field
+        = f.label :パスワード
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} 文字以上の半角英数字)
+        %span.form_require 必須
+        %br/
+        = f.password_field :password, :placeholder=>"#{@minimum_password_length} 文字以上の半角英数字",  autocomplete: "new-password", class: "input_box"
+      .field
+        = f.label :"パスワード(確認)"
+        %span.form_require 必須
+        %br/
+      = f.password_field :password_confirmation, :placeholder=>"同じパスワードを入力して下さい", autocomplete: "new-password", class: "input_box"
+    .actions
+      = f.submit "次へ進む", class: "red_btn"
+= render "products/footer"

@@ -1,0 +1,30 @@
+= link_to root_path, class: "fixed_btn" do
+  %h1 出品する
+  = image_tag "icon/icon_camera.png", height: '62%', width: '62%'
+.header
+  .header__box
+    .header__box__1
+      .header__box__1__title-box
+        .header__box__1__title-box__title
+          = link_to root_path do
+            = image_tag 'logo/logo.png', height: '40px', width: '140px'
+          
+      .header__box__1__search-box
+        = form_with(url: root_path, local: true, method: :get, class: "header__box__1__search-box__box") do |f|
+          = f.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__1__search-box__box__text"
+          = image_submit_tag 'icon/icon-search 1.png', height: '19px', width: '19px', class: 'header__box__1__search-box__box__submit'
+    .header__box__2
+      .header__box__2__content
+        %ul
+          %li
+            = link_to "/categorys" do
+              カテゴリー
+            
+          %li
+            = link_to root_path do
+              ブランド
+      .header__box__2__login
+        %ul
+          %li
+            = link_to root_path do
+              マイページ

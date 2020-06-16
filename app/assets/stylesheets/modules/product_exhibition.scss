@@ -1,0 +1,204 @@
+.sell-form__image__dropbox {
+  #output-box{
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    .preview-image{
+      box-sizing: border-box;
+      height: 150px;
+      width: 20%;
+      padding: 0px 4px;
+      &__figure{
+        margin:0 auto;
+        height: 118px;
+        background-color: rgb(245, 245, 245);
+        img{
+          box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      &__button{
+        border-top: 1px solid rgb(204, 204, 204);
+        background-color: rgb(245, 245, 245);
+        justify-content: space-around;
+        display: flex;
+        align-items: center;
+        height: 32px;
+        &__delete {
+          color: rgb(0, 149, 238);
+        }
+      }
+    }
+    #image-input{
+      box-sizing: border-box;
+      height: 100%;
+      -webkit-flex: 1;
+      flex: 1;
+      .sell-container__content__upload__items__box__label{
+        box-sizing: border-box;
+        background-color: rgb(245, 245, 245);
+        border-width: 1px;
+        border-style: dashed;
+        border-color: rgb(204, 204, 204);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i{
+          box-sizing: border-box;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+}
+.error-messages {
+  color: #ff0211;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin: 16px 0;
+  box-sizing: border-box;
+  &__price {
+    text-align: right;
+  }
+}
+// 編集用CSS
+.wrapper {
+  background-color: #f8f8f8;
+  .sell-form {
+    margin: 0 auto;
+    background-color: white;
+    width: 700px;
+    height: 100%;
+    &__image {
+      padding: 40px;
+      border-bottom: 1px solid #f8f8f8;
+      font-size: 14px;
+      color:#333;
+      #image-box2 {
+        box-sizing: border-box;
+        display: flex;
+        height: auto;
+        #previews2 {
+          display: flex;
+          box-sizing: border-box;
+          height: 150px;
+          .adsaf{
+            width: 120px;
+            padding: 0px 4px;
+            display: inline-block;
+            list-style: none;
+            .edit_img_0,.edit_img_1,.edit_img_2,.edit_img_3,.edit_img_4,.edit_img_5,.edit_img_6,.edit_img_7,.edit_img_8,.edit_img_9 {
+              margin:0 auto;
+              height: 118px;
+              background-color: rgb(245, 245, 245);
+              object-fit: contain;
+              width: 100%;
+              display: flex;
+              img {
+                width: 100%;
+                height: 100%;
+                
+              }
+            }
+            .js-remove{
+              border-top: 1px solid rgb(204, 204, 204);
+              background-color: rgb(245, 245, 245);
+              justify-content: space-around;
+              display: flex;
+              align-items: center;
+              height: 32px;
+              color: rgb(0, 149, 238);
+              line-height: 30px;
+              text-align: center;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.image-box{
+  height: 160px;
+  margin-top: 30px;
+  display: flex;
+  
+  &__container {
+    background: #f5f5f5;
+    border: 1px dashed #ccc;
+  }
+  
+  &__item-num-0 {
+    height: 160px;
+    width: 620px;
+
+    &__input-area {
+      height: 10px;
+      margin: auto;
+      text-align: center;
+      background: #f5f5f5;
+      border: 1px dashed #ccc;
+      margin-left: 5px;
+      align-items: center;
+
+      label {
+        display:block;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.adsaf > img {
+  height: 100px;
+  width: 114px;
+}
+
+
+.js-file_group pre {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  right: 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  pointer-events: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.js-file_group {
+  position: relative;
+  background: #f5f5f5;
+  border: 1px dashed #ccc;
+  font-size: 0;
+  text-align: center;
+  -webkit-transition: -webkit-box-shadow ease-out .3s;
+  transition: -webkit-box-shadow ease-out .3s;
+  transition: box-shadow ease-out .3s;
+  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+  cursor: pointer;
+  float: right;
+  margin-left: 2%;
+  width: 100%;
+  margin-left: 0;
+  display: none;
+}
+.js-file_group:nth-of-type(n+2) {
+  display: none;
+}
+
+.js-file2 {
+  display: none;
+}

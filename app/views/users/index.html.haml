@@ -1,0 +1,10 @@
+.wrapper
+  = render "products/header"
+  - breadcrumb :mypages
+  = render "gretel/gretel"
+
+  %p.users_contents
+    = render "users/side_bar"
+    = render "users/main_menu"
+  = render "products/footer"
+

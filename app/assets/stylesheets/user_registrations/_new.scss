@@ -1,0 +1,160 @@
+body{
+  background-color: #f8f8f8;
+
+}
+
+
+.signup_page{
+  background-color: #FFFFFF;
+  height:100%;
+  width: 700px;
+  margin: auto;
+  font-weight: 300;
+  text-align: center;
+  
+  
+  .new_title{
+    font-size: 22px;
+    border-bottom:solid #f5f5f5;
+    padding: 32px;
+    text-align: center;
+    
+  }
+  
+  .new_user{
+    font-size: 12px;
+    padding: 24px 16px 40px;
+    width: 350px;
+    margin: auto;
+    
+    .confirmation{
+      width: 80%;
+    }
+    
+    .field{
+      margin-top: 32px;
+    }
+    
+    .form_require{
+      background: #ea352d;
+      color: #ffffff;
+      margin: 0 8px;
+      padding: 2px 4px;
+      border-radius: 2px;
+      vertical-align: top;
+      
+    }
+    
+    .user_nickname{
+      width: 80%;
+      margin: 8px 0 0;
+    }
+    
+    .form_control{
+      height: 30px;
+      width: 26%;
+      
+    }
+    
+    .input_box{
+      height: 30px;
+      width: 80%;
+      border-radius: 5px;
+      margin-top: 5px;
+      
+      &__half{
+        height: 30px;
+        width: 40%;
+        border-radius: 5px;
+        margin-top: 5px;
+        
+      }
+    }
+    
+    #user_birth_date_1i,#user_birth_date_2i,#user_birth_date_3i  {
+      height: 30px;
+      width: 26%;
+      
+    }
+    
+    .actions{
+      margin-top: 32px;
+      
+      .red_btn{
+        background-color: #ea352d;
+        width: 80%;
+        line-height: 48px;
+        color: #FFFFFF;
+        
+      }
+    }
+    #error_explanation{
+      background-color: #ccffff;
+      color: #ea352d;
+      margin: 10px 0;
+      
+    }
+    #facebook{
+      display: block;
+      background-color: #385185;
+      color: #ffffff;
+      height: 48px;
+      width: 80%;
+      line-height: 48px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+    }
+    
+    #google{
+      display: block;
+      border: solid 1px;
+      height: 48px;
+      width: 80%;
+      line-height: 48px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+      
+    }
+    
+    #login_mail{
+      display: block;
+      background-color: #ea352d;
+      color: #ffffff;
+      height: 48px;
+      width: 80%;
+      line-height: 48px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+      
+    }
+  }
+}
+
+.edit_btn{
+  height: 30px;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  line-height: 30px;
+  margin: auto;
+  .new_registration{
+    background-color: #3CCACE;
+    color: #ffffff;
+    padding: 0 10px;
+  }
+  .new_password{
+    background-color: #3CCACE;
+    color: #ffffff;
+
+  }
+
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
